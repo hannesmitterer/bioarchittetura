@@ -1,0 +1,54 @@
+---
+layout: default
+title: "Rivista Bioarchitettura®"
+description: "Tutte le edizioni della rivista Bioarchitettura® - 30 anni di eccellenza nell'architettura sostenibile"
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1>Rivista Bioarchitettura®</h1>
+    <p class="lead">30 anni di eccellenza nell'architettura sostenibile</p>
+    <p>La prima rivista italiana ad occuparsi dell'abitare e costruire ecologico, l'unica ad offrire ai suoi lettori un'informazione aggiornata, selezionata e di prima mano al di là di ogni moda.</p>
+  </div>
+</div>
+
+<section class="rivista-content">
+  <div class="container">
+    <div class="content-grid">
+      {% for articolo in site.rivista %}
+      <article class="content-card">
+        <h3><a href="{{ articolo.url | relative_url }}">{{ articolo.title }}</a></h3>
+        {% if articolo.date %}
+        <time class="article-date">{{ articolo.date | date: "%d %B %Y" }}</time>
+        {% endif %}
+        {% if articolo.description %}
+        <p>{{ articolo.description }}</p>
+        {% endif %}
+        {% if articolo.author %}
+        <p class="author">di {{ articolo.author }}</p>
+        {% endif %}
+        <a href="{{ articolo.url | relative_url }}" class="btn-link">Leggi articolo</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="rivista-info">
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Come è nata</h3>
+        <p>Fondata nel 1992 da Ugo Sasso e Wittfrida Mitterer, è la prima rivista italiana di Bioarchitettura come risposta al cambiamento climatico.</p>
+      </div>
+      <div class="info-card">
+        <h3>A chi è rivolta</h3>
+        <p>Leggere Bioarchitettura®Abitare la Terra è il miglior modo per trovarsi al centro della discussione sull'architettura ecologica in Italia.</p>
+      </div>
+      <div class="info-card">
+        <h3>Contenuti</h3>
+        <p>Come osservatorio interdisciplinare a 360° sull'integrazione dell'ecologia nel costruire, nell'abitare e nel progettare.</p>
+      </div>
+    </div>
+  </div>
+</section>

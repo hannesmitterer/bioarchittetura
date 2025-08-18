@@ -1,0 +1,49 @@
+---
+layout: default
+title: "News e Aggiornamenti"
+description: "Ultime notizie dal mondo della bioarchitettura e dell'edilizia sostenibile"
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1>News e Aggiornamenti</h1>
+    <p class="lead">Resta aggiornato sulle novità del settore</p>
+    <p>Le ultime notizie, eventi e sviluppi nel mondo della bioarchitettura e della sostenibilità ambientale.</p>
+  </div>
+</div>
+
+<section class="news-content">
+  <div class="container">
+    <div class="news-list">
+      {% for articolo in site.news reversed %}
+      <article class="news-item">
+        <div class="news-header">
+          <h3><a href="{{ articolo.url | relative_url }}">{{ articolo.title }}</a></h3>
+          <div class="news-meta">
+            <time datetime="{{ articolo.date | date_to_xmlschema }}">{{ articolo.date | date: "%d %B %Y" }}</time>
+            {% if articolo.category %} • <span class="category">{{ articolo.category }}</span>{% endif %}
+            {% if articolo.author %} • <span class="author">{{ articolo.author }}</span>{% endif %}
+          </div>
+        </div>
+        {% if articolo.description %}
+        <p class="news-excerpt">{{ articolo.description }}</p>
+        {% endif %}
+        <a href="{{ articolo.url | relative_url }}" class="btn-link">Leggi tutto</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-signup">
+  <div class="container">
+    <div class="newsletter-card">
+      <h3>Iscriviti alla Newsletter</h3>
+      <p>Resta informato con i nostri eventi, attività e sconti.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="La tua email" required>
+        <button type="submit">Iscriviti</button>
+      </form>
+    </div>
+  </div>
+</section>

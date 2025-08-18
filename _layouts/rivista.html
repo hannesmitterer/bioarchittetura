@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<article class="rivista-article">
+  <header class="article-header">
+    <div class="container">
+      <h1>{{ page.title }}</h1>
+      <div class="article-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y" }}</time>
+        {% if page.author %}<span class="author">di {{ page.author }}</span>{% endif %}
+        {% if page.category %}<span class="category">{{ page.category }}</span>{% endif %}
+      </div>
+      {% if page.description %}
+      <p class="article-description">{{ page.description }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="article-content">
+    <div class="container">
+      {{ content }}
+    </div>
+  </div>
+
+  {% if page.tags %}
+  <footer class="article-footer">
+    <div class="container">
+      <div class="article-tags">
+        <h4>Tag:</h4>
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </footer>
+  {% endif %}
+</article>
+
+<nav class="article-nav">
+  <div class="container">
+    <a href="{{ '/rivista/' | relative_url }}" class="back-link">← Torna alla rivista</a>
+  </div>
+</nav>

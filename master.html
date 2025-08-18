@@ -1,0 +1,55 @@
+---
+layout: default
+title: "Master e Corsi di Formazione"
+description: "Corsi di formazione specialistica in bioarchitettura e sostenibilità ambientale"
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1>Master e Corsi di Formazione</h1>
+    <p class="lead">Formazione specialistica per professionisti dell'edilizia sostenibile</p>
+    <p>Scopri i nostri corsi accreditati per acquisire competenze avanzate in bioarchitettura, certificazione energetica e progettazione sostenibile.</p>
+  </div>
+</div>
+
+<section class="courses-content">
+  <div class="container">
+    <div class="content-grid">
+      {% for corso in site.master %}
+      <article class="content-card">
+        <h3><a href="{{ corso.url | relative_url }}">{{ corso.title }}</a></h3>
+        {% if corso.duration %}
+        <div class="course-meta">
+          <span class="duration">{{ corso.duration }}</span>
+          {% if corso.level %} • <span class="level">{{ corso.level }}</span>{% endif %}
+          {% if corso.price %} • <span class="price">{{ corso.price }}</span>{% endif %}
+        </div>
+        {% endif %}
+        {% if corso.description %}
+        <p>{{ corso.description }}</p>
+        {% endif %}
+        <a href="{{ corso.url | relative_url }}" class="btn-link">Scopri il corso</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="training-info">
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Certificazioni Riconosciute</h3>
+        <p>Tutti i nostri corsi rilasciano attestati riconosciuti nel settore della bioarchitettura e dell'edilizia sostenibile.</p>
+      </div>
+      <div class="info-card">
+        <h3>Docenti Qualificati</h3>
+        <p>I corsi sono tenuti da professionisti esperti con anni di esperienza nel settore e nella formazione.</p>
+      </div>
+      <div class="info-card">
+        <h3>Modalità Flessibili</h3>
+        <p>Offriamo soluzioni formative in presenza, online e blended per adattarsi alle esigenze dei professionisti.</p>
+      </div>
+    </div>
+  </div>
+</section>

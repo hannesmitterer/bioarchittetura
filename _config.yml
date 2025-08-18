@@ -1,0 +1,68 @@
+# Jekyll Configuration for Bioarchitettura
+title: "Bioarchitettura® - Abitare la Terra"
+description: "La prima rivista italiana di bioarchitettura - Website ufficiale con 30 anni di eccellenza nell'architettura sostenibile"
+author: "Fondazione Italiana per la Bioarchitettura®"
+email: "info@bioarchitettura.org"
+baseurl: "/bioarchittetura"
+url: "https://hannesmitterer.github.io"
+
+# Jekyll Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/
+timezone: Europe/Rome
+encoding: utf-8
+
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  rivista:
+    output: true
+    permalink: /:collection/:name/
+  master:
+    output: true
+    permalink: /:collection/:name/
+  news:
+    output: true
+    permalink: /:collection/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "rivista"
+    values:
+      layout: "rivista"
+  - scope:
+      path: ""
+      type: "master"
+    values:
+      layout: "master"
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: "news"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - README.md
+  - intro.txt

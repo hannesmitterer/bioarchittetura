@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<article class="master-course">
+  <header class="course-header">
+    <div class="container">
+      <h1>{{ page.title }}</h1>
+      <div class="course-meta">
+        {% if page.duration %}<span class="duration">Durata: {{ page.duration }}</span>{% endif %}
+        {% if page.level %}<span class="level">Livello: {{ page.level }}</span>{% endif %}
+        {% if page.price %}<span class="price">Prezzo: {{ page.price }}</span>{% endif %}
+      </div>
+      {% if page.description %}
+      <p class="course-description">{{ page.description }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="course-content">
+    <div class="container">
+      {{ content }}
+    </div>
+  </div>
+
+  <div class="course-actions">
+    <div class="container">
+      <a href="#" class="btn-primary">Iscriviti al Corso</a>
+      <a href="#" class="btn-secondary">Scarica Brochure</a>
+    </div>
+  </div>
+
+  {% if page.tags %}
+  <footer class="course-footer">
+    <div class="container">
+      <div class="course-tags">
+        <h4>Competenze acquisite:</h4>
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </footer>
+  {% endif %}
+</article>
+
+<nav class="course-nav">
+  <div class="container">
+    <a href="{{ '/master/' | relative_url }}" class="back-link">← Torna ai Master</a>
+  </div>
+</nav>

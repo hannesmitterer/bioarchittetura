@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ site.description }}">
+    <meta name="author" content="{{ site.author }}">
+    
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    {% seo %}
+    {% feed_meta %}
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+                </div>
+                <ul class="navbar-nav">
+                    <li><a href="{{ '/rivista/' | relative_url }}">Rivista</a></li>
+                    <li><a href="{{ '/master/' | relative_url }}">Master</a></li>
+                    <li><a href="{{ '/news/' | relative_url }}">News</a></li>
+                    <li><a href="{{ '/shop.html' | relative_url }}">Shop</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="site-main">
+        {{ content }}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Bioarchitettura®</h4>
+                    <p>La Fondazione Italiana per la Bioarchitettura® e l'Antropizzazione Sostenibile dell'Ambiente è un Ente morale senza fini di lucro</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <p>+39 0471 973097</p>
+                    <p>{{ site.email }}</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Collegamenti</h4>
+                    <ul>
+                        <li><a href="https://www.bioarchitettura.org/rivista">Tutte le edizioni della Rivista</a></li>
+                        <li><a href="https://www.bioarchitettura.org/articoli">Database articoli</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>
