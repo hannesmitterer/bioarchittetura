@@ -1,0 +1,86 @@
+# Jekyll configuration for Bioarchitettura® website
+title: "Bioarchitettura® - Abitare la Terra"
+description: "La prima rivista italiana di bioarchitettura - 30 anni di eccellenza nell'architettura sostenibile"
+baseurl: ""
+url: "https://hannesmitterer.github.io/bioarchittetura"
+
+# Author information
+author:
+  name: "Fondazione Italiana per la Bioarchitettura®"
+  email: "info@bioarchitettura.org"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  rivista:
+    output: true
+    permalink: /:collection/:name/
+  master:
+    output: true
+    permalink: /:collection/:name/
+  news:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "rivista"
+    values:
+      layout: "article"
+  - scope:
+      path: ""
+      type: "master"
+    values:
+      layout: "course"
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: "news"
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Site settings
+lang: it
+timezone: Europe/Rome
+
+# Social links
+social:
+  twitter: bioarchitettura
+  facebook: bioarchitettura.org
+  linkedin: company/bioarchitettura
+
+# Contact information
+contact:
+  phone: "+39 0471 973097"
+  email: "info@bioarchitettura.org"
+  address: "Via Example 123, 39100 Bolzano, Italy"
+
+# SEO settings
+google_analytics: UA-XXXXXXXXX-1
+google_site_verification: "your-google-site-verification-code"

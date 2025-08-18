@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Bioarchitettura® | Abbonamenti, Libri e Corsi di Formazione</title>
+    <meta name="description" content="Shop ufficiale Bioarchitettura®: abbonamenti alla rivista, ebooks, libri specialistici e corsi di formazione per l'architettura sostenibile.">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="bioarchitettura shop, abbonamenti rivista architettura, corsi formazione sostenibilità, libri bioarchitettura">
+    <meta name="author" content="Fondazione Italiana per la Bioarchitettura®">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Shop Bioarchitettura® - Abbonamenti e Formazione">
+    <meta property="og:description" content="Abbonamenti alla prima rivista italiana di bioarchitettura, ebooks e corsi di formazione specialistica">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hannesmitterer.github.io/bioarchittetura/shop.html">
+    
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/shop.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo" aria-label="Bioarchitettura homepage">
+                    Bioarchitettura<sup>®</sup>
+                </a>
+                
+                <nav role="navigation" aria-label="Navigazione principale">
+                    <ul class="nav">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li><a href="/rivista/" class="nav-link">Rivista</a></li>
+                        <li><a href="/master/" class="nav-link">Master</a></li>
+                        <li><a href="/fondazione/" class="nav-link">Fondazione</a></li>
+                        <li><a href="/news/" class="nav-link">News</a></li>
+                        <li><a href="/shop.html" class="nav-link" style="color: var(--sky-blue-light);">Shop</a></li>
+                        <li><a href="/contatti/" class="nav-link">Contatti</a></li>
+                        <li>
+                            <div class="cart-icon-container" role="button" tabindex="0" aria-label="Apri carrello">
+                                <span class="cart-icon">🛒</span>
+                                <span class="cart-count" style="display: none;">0</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <button class="menu-toggle" aria-expanded="false" aria-controls="navigation" aria-label="Apri menu di navigazione">
+                        ☰
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Shop Header -->
+        <section class="shop-header">
+            <div class="container">
+                <h1>Shop Bioarchitettura<sup>®</sup></h1>
+                <p class="shop-subtitle">
+                    Abbonamenti alla rivista, formazione specialistica e pubblicazioni per l'architettura sostenibile.<br>
+                    La tua risorsa completa per la bioarchitettura dal 1992.
+                </p>
+            </div>
+        </section>
+
+        <!-- Shop Content -->
+        <section class="shop-container">
+            <!-- Category Filters -->
+            <div class="categories" role="tablist" aria-label="Filtri categoria prodotti">
+                <button class="category-filter active" data-category="all" role="tab" aria-selected="true">
+                    Tutti i Prodotti
+                </button>
+                <button class="category-filter" data-category="subscriptions" role="tab" aria-selected="false">
+                    Abbonamenti
+                </button>
+                <button class="category-filter" data-category="ebooks" role="tab" aria-selected="false">
+                    Ebooks
+                </button>
+                <button class="category-filter" data-category="books" role="tab" aria-selected="false">
+                    Libri
+                </button>
+                <button class="category-filter" data-category="courses" role="tab" aria-selected="false">
+                    Formazione
+                </button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" role="tabpanel" aria-label="Elenco prodotti">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+
+            <!-- Additional Info Section -->
+            <section class="section" style="background: var(--cream-white); margin-top: 4rem; padding: 3rem 2rem; border-radius: 12px;">
+                <div class="section-header">
+                    <h2 class="section-title">Perché scegliere il nostro Shop</h2>
+                </div>
+                
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                    <div class="feature-card" style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🚚</div>
+                        <h3 style="margin-bottom: 1rem; color: var(--primary-green);">Spedizione Gratuita</h3>
+                        <p>Spedizione gratuita per tutti gli abbonamenti e ordini superiori a 35€</p>
+                    </div>
+                    
+                    <div class="feature-card" style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🔒</div>
+                        <h3 style="margin-bottom: 1rem; color: var(--primary-green);">Pagamenti Sicuri</h3>
+                        <p>Pagamenti sicuri con carta di credito, PayPal e bonifico bancario</p>
+                    </div>
+                    
+                    <div class="feature-card" style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📞</div>
+                        <h3 style="margin-bottom: 1rem; color: var(--primary-green);">Supporto Dedicato</h3>
+                        <p>Assistenza clienti specializzata per ogni tua esigenza</p>
+                    </div>
+                    
+                    <div class="feature-card" style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
+                        <h3 style="margin-bottom: 1rem; color: var(--primary-green);">Crediti Formativi</h3>
+                        <p>Corsi accreditati con crediti formativi per ordini professionali</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Section -->
+            <section class="newsletter" aria-label="Iscrivizione sconti esclusivi">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Sconti Esclusivi per Abbonati</h2>
+                        <p class="section-subtitle">
+                            Iscriviti alla newsletter per ricevere offerte speciali e anteprime sui nuovi corsi.
+                        </p>
+                    </div>
+
+                    <form class="newsletter-form" aria-label="Modulo sconti newsletter">
+                        <input type="email" class="newsletter-input" placeholder="La tua email per gli sconti" required>
+                        <button type="submit" class="btn btn-accent">Ricevi Sconti</button>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" aria-hidden="true"></div>
+    <aside class="cart-sidebar" role="dialog" aria-label="Carrello acquisti" aria-hidden="true">
+        <div class="cart-header">
+            <h2 class="cart-title">Il tuo Carrello</h2>
+            <button class="cart-close" aria-label="Chiudi carrello">&times;</button>
+        </div>
+        
+        <div class="cart-items">
+            <!-- Cart items will be populated here -->
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span class="total-label">Totale:</span>
+                <span class="total-amount">€0.00</span>
+            </div>
+            
+            <button class="checkout-btn" disabled>
+                Procedi al Checkout
+            </button>
+            
+            <p style="font-size: 0.875rem; color: var(--stone-gray); margin-top: 1rem; text-align: center;">
+                Spedizione gratuita per ordini superiori a €35
+            </p>
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <h3>Shop Bioarchitettura<sup>®</sup></h3>
+                    <p>Il negozio ufficiale della prima rivista italiana di bioarchitettura. Qualità garantita dal 1992.</p>
+                    
+                    <div style="margin-top: 1rem;">
+                        <p><strong>Assistenza Clienti:</strong></p>
+                        <p><a href="tel:+390471973097" style="color: var(--sky-blue-light);">+39 0471 973097</a></p>
+                        <p><a href="mailto:shop@bioarchitettura.org" style="color: var(--sky-blue-light);">shop@bioarchitettura.org</a></p>
+                    </div>
+                </div>
+
+                <!-- Shop Info -->
+                <div class="footer-section">
+                    <h3>Informazioni Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="/shop/spedizioni/">Spedizioni e Consegne</a></li>
+                        <li><a href="/shop/resi/">Resi e Rimborsi</a></li>
+                        <li><a href="/shop/pagamenti/">Metodi di Pagamento</a></li>
+                        <li><a href="/shop/faq/">FAQ Shop</a></li>
+                        <li><a href="/shop/aziende/">Sconti Aziende</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="footer-section">
+                    <h3>Categorie</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-category="subscriptions">Abbonamenti Rivista</a></li>
+                        <li><a href="#" data-category="ebooks">Ebooks Specialistici</a></li>
+                        <li><a href="#" data-category="books">Libri e Pubblicazioni</a></li>
+                        <li><a href="#" data-category="courses">Corsi e Master</a></li>
+                        <li><a href="/gift-card/">Buoni Regalo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="footer-section">
+                    <h3>Supporto</h3>
+                    <ul class="footer-links">
+                        <li><a href="/contatti/">Contattaci</a></li>
+                        <li><a href="/shop/ordini/">Stato Ordine</a></li>
+                        <li><a href="/account/">Il Mio Account</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/termini-vendita/">Termini di Vendita</a></li>
+                    </ul>
+                    
+                    <div style="margin-top: 1rem;">
+                        <p style="font-size: 0.875rem; color: var(--stone-gray-light);">
+                            <strong>Orari Assistenza:</strong><br>
+                            Lun-Ven: 9:00-18:00<br>
+                            Sab: 9:00-13:00
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Fondazione Italiana per la Bioarchitettura®. Tutti i diritti riservati.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                    Shop sicuro con certificazione SSL • Garanzia soddisfatti o rimborsati
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/shop.js"></script>
+    
+    <!-- Structured Data for Products -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "Shop Bioarchitettura®",
+        "description": "Negozio ufficiale per abbonamenti, libri e corsi di bioarchitettura",
+        "url": "https://hannesmitterer.github.io/bioarchittetura/shop.html",
+        "telephone": "+39 0471 973097",
+        "email": "shop@bioarchitettura.org",
+        "acceptsReservations": "True",
+        "priceRange": "€15-€2800",
+        "paymentAccepted": ["Credit Card", "PayPal", "Bank Transfer"],
+        "currenciesAccepted": "EUR",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "IT"
+        }
+    }
+    </script>
+    
+    <!-- Analytics placeholder -->
+    <script>
+        console.log('🛒 Bioarchitettura® Shop loaded successfully');
+        
+        // Enhanced e-commerce tracking placeholder
+        // gtag('config', 'GA_MEASUREMENT_ID', {
+        //     enhanced_ecommerce: true
+        // });
+    </script>
+</body>
+</html>
