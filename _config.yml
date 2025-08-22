@@ -1,0 +1,121 @@
+# Jekyll Configuration for Bioarchitettura® - Abitare la Terra
+# La prima rivista italiana di bioarchitettura
+
+# Site settings
+title: "Bioarchitettura® - Abitare la Terra"
+description: "La rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica dal 1990."
+baseurl: "/bioarchittetura"
+url: "https://hannesmitterer.github.io"
+author: "Fondazione Italiana per la Bioarchitettura®"
+email: "info@bioarchitettura.org"
+lang: "it"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  rivista:
+    output: true
+    permalink: /rivista/:name/
+    sort_by: date
+  master:
+    output: true
+    permalink: /master/:name/
+    sort_by: date
+  news:
+    output: true
+    permalink: /news/:name/
+    sort_by: date
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Redazione Bioarchitettura®"
+  - scope:
+      path: "_rivista"
+      type: "rivista"
+    values:
+      layout: "rivista"
+  - scope:
+      path: "_master"
+      type: "master"
+    values:
+      layout: "master"
+  - scope:
+      path: "_news"
+      type: "news"
+    values:
+      layout: "news"
+
+# SEO and Social
+twitter:
+  username: bioarchitettura
+  card: summary_large_image
+
+facebook:
+  publisher: bioarchitettura
+
+social:
+  name: Bioarchitettura®
+  links:
+    - https://twitter.com/bioarchitettura
+    - https://www.facebook.com/bioarchitettura
+    - https://www.linkedin.com/company/bioarchitettura
+
+# Site navigation
+navigation:
+  - name: Home
+    url: /
+  - name: Rivista
+    url: /rivista.html
+  - name: Master
+    url: /master.html
+  - name: Fondazione
+    url: /fondazione.html
+  - name: Shop
+    url: /shop.html
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# Include files
+include:
+  - _pages
+  - assets
+
+# Sass configuration
+sass:
+  sass_dir: assets/css
+  style: compressed
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
+
+# Archive settings
+archive:
+  enabled: true
+  layout: archive
+  permalinks:
+    year: /archive/:year/
+    month: /archive/:year/:month/
+    day: /archive/:year/:month/:day/
