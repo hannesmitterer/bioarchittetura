@@ -16,15 +16,15 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Bioarchitettura®</a>
+                <a href="{{ '/' | relative_url }}" class="logo">Bioarchitettura®</a>
                 <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
                 <nav class="nav" id="mainNav">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-                        <li class="nav-item"><a href="rivista.html" class="nav-link">Rivista</a></li>
-                        <li class="nav-item"><a href="master.html" class="nav-link">Master</a></li>
-                        <li class="nav-item"><a href="fondazione.html" class="nav-link">Fondazione</a></li>
-                        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                        <li class="nav-item"><a href="{{ '/' | relative_url }}" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="{{ '/rivista/' | relative_url }}" class="nav-link">Rivista</a></li>
+                        <li class="nav-item"><a href="{{ '/master/' | relative_url }}" class="nav-link">Master</a></li>
+                        <li class="nav-item"><a href="{{ '/fondazione/' | relative_url }}" class="nav-link">Fondazione</a></li>
+                        <li class="nav-item"><a href="{{ '/shop/' | relative_url }}" class="nav-link">Shop</a></li>
                     </ul>
                 </nav>
             </div>
@@ -39,7 +39,7 @@
                     La rivista italiana di riferimento per l'architettura sostenibile, 
                     l'edilizia ecologica e la progettazione bioclimatica dal 1990.
                 </p>
-                <a href="rivista.html" class="btn">Scopri la Rivista</a>
+                <a href="{{ '/rivista/' | relative_url }}" class="btn">Scopri la Rivista</a>
             </section>
 
             <section class="section">
@@ -48,17 +48,17 @@
                     <div class="card">
                         <h3 class="card-title">📖 Rivista Specializzata</h3>
                         <p>Da oltre 30 anni pubblichiamo articoli di approfondimento su architettura sostenibile, materiali naturali, energia rinnovabile e comfort abitativo.</p>
-                        <a href="rivista.html" class="btn-secondary btn">Leggi di più</a>
+                        <a href="{{ '/rivista/' | relative_url }}" class="btn-secondary btn">Leggi di più</a>
                     </div>
                     <div class="card">
                         <h3 class="card-title">🎓 Formazione Master</h3>
                         <p>Corsi di alta formazione per architetti, ingegneri e progettisti che vogliono specializzarsi in bioarchitettura e sostenibilità ambientale.</p>
-                        <a href="master.html" class="btn-secondary btn">Scopri i Corsi</a>
+                        <a href="{{ '/master/' | relative_url }}" class="btn-secondary btn">Scopri i Corsi</a>
                     </div>
                     <div class="card">
                         <h3 class="card-title">🏛️ Fondazione</h3>
                         <p>La Fondazione Bioarchitettura promuove la ricerca e lo sviluppo di tecnologie e metodologie per un'architettura rispettosa dell'ambiente.</p>
-                        <a href="fondazione.html" class="btn-secondary btn">La Fondazione</a>
+                        <a href="{{ '/fondazione/' | relative_url }}" class="btn-secondary btn">La Fondazione</a>
                     </div>
                 </div>
             </section>
@@ -84,7 +84,7 @@
             <section class="section text-center">
                 <h2 class="section-title">Unisciti alla Comunità Bioarchitettura®</h2>
                 <p class="mb-lg">Scopri prodotti, corsi e contenuti dedicati alla progettazione sostenibile</p>
-                <a href="shop.html" class="btn">Visita lo Shop</a>
+                <a href="{{ '/shop/' | relative_url }}" class="btn">Visita lo Shop</a>
             </section>
         </div>
     </main>

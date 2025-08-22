@@ -16,15 +16,15 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Bioarchitettura®</a>
+                <a href="{{ '/' | relative_url }}" class="logo">Bioarchitettura®</a>
                 <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
                 <nav class="nav" id="mainNav">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="rivista.html" class="nav-link active">Rivista</a></li>
-                        <li class="nav-item"><a href="master.html" class="nav-link">Master</a></li>
-                        <li class="nav-item"><a href="fondazione.html" class="nav-link">Fondazione</a></li>
-                        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                        <li class="nav-item"><a href="{{ '/' | relative_url }}" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="{{ '/rivista/' | relative_url }}" class="nav-link active">Rivista</a></li>
+                        <li class="nav-item"><a href="{{ '/master/' | relative_url }}" class="nav-link">Master</a></li>
+                        <li class="nav-item"><a href="{{ '/fondazione/' | relative_url }}" class="nav-link">Fondazione</a></li>
+                        <li class="nav-item"><a href="{{ '/shop/' | relative_url }}" class="nav-link">Shop</a></li>
                     </ul>
                 </nav>
             </div>
@@ -102,14 +102,14 @@
                         <li>Materiali locali per la rigenerazione architettonica</li>
                         <li>Case study: Il recupero del centro storico di Civita di Bagnoregio</li>
                     </ul>
-                    <a href="shop.html" class="btn">Acquista questa Edizione</a>
+                    <a href="{{ '/shop/' | relative_url }}" class="btn">Acquista questa Edizione</a>
                 </div>
             </section>
 
             <section class="section text-center">
                 <h2 class="section-title">Abbonati alla Rivista</h2>
                 <p class="mb-lg">Ricevi tutti i numeri direttamente a casa e accedi all'archivio digitale completo</p>
-                <a href="shop.html" class="btn">Scopri gli Abbonamenti</a>
+                <a href="{{ '/shop/' | relative_url }}" class="btn">Scopri gli Abbonamenti</a>
             </section>
         </div>
     </main>

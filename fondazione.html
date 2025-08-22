@@ -16,15 +16,15 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Bioarchitettura®</a>
+                <a href="{{ '/' | relative_url }}" class="logo">Bioarchitettura®</a>
                 <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
                 <nav class="nav" id="mainNav">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="rivista.html" class="nav-link">Rivista</a></li>
-                        <li class="nav-item"><a href="master.html" class="nav-link">Master</a></li>
-                        <li class="nav-item"><a href="fondazione.html" class="nav-link active">Fondazione</a></li>
-                        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                        <li class="nav-item"><a href="{{ '/' | relative_url }}" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="{{ '/rivista/' | relative_url }}" class="nav-link">Rivista</a></li>
+                        <li class="nav-item"><a href="{{ '/master/' | relative_url }}" class="nav-link">Master</a></li>
+                        <li class="nav-item"><a href="{{ '/fondazione/' | relative_url }}" class="nav-link active">Fondazione</a></li>
+                        <li class="nav-item"><a href="{{ '/shop/' | relative_url }}" class="nav-link">Shop</a></li>
                     </ul>
                 </nav>
             </div>

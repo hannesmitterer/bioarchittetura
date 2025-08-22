@@ -13,8 +13,13 @@ if [ ! -f "_config.yml" ]; then
     exit 1
 fi
 
-# Check if Jekyll is installed
-if ! command -v jekyll &> /dev/null; then
+# Check if Jekyll is available via bundle
+echo "🔍 Checking Jekyll installation..."
+if command -v bundle &> /dev/null; then
+    echo "✅ Using Jekyll via Bundler"
+elif command -v jekyll &> /dev/null; then
+    echo "✅ Jekyll found in system"
+else
     echo "📦 Installing Jekyll..."
     gem install bundler jekyll
 fi
