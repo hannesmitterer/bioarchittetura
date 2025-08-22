@@ -1,0 +1,40 @@
+# Jekyll Configuration for Bioarchitettura
+title: "Bioarchitettura® - Abitare la Terra"
+description: "La rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica."
+baseurl: ""
+url: "https://hannesmitterer.github.io/bioarchittetura"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugin configuration
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - admin/
+
+# Collections (if needed for future expansion)
+collections:
+  rivista:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
