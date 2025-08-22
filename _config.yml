@@ -1,0 +1,64 @@
+# Site settings
+title: "Bioarchitettura® - Abitare la Terra"
+description: "Rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica"
+url: "https://hannesmitterer.github.io"
+baseurl: "/bioarchittetura"
+lang: "it"
+
+# Jekyll settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+timezone: Europe/Rome
+
+# Build settings
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle
+  - .sass-cache
+  - .jekyll-cache
+  - .jekyll-metadata
+  - deploy.sh
+
+# Collections
+collections:
+  rivista:
+    output: true
+    permalink: /rivista/:name/
+  master:
+    output: true
+    permalink: /master/:name/
+  news:
+    output: true
+    permalink: /news/:name/
+
+# Defaults for collections
+defaults:
+  - scope:
+      path: ""
+      type: "rivista"
+    values:
+      layout: "article"
+  - scope:
+      path: ""
+      type: "master"
+    values:
+      layout: "course"
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: "news"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# GitHub Pages compatibility
+github: [metadata]

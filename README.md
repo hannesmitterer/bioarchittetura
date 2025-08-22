@@ -57,25 +57,28 @@ Questo repository contiene il sito web moderno per **Bioarchitettura® - Abitare
 bioarchittetura/
 ├── README.md                     # Documentazione principale
 ├── _config.yml                   # Configurazione Jekyll
+├── Gemfile                       # Dipendenze Ruby/Jekyll
 ├── .gitignore                    # File da escludere dal versioning
+├── deploy.sh                     # Script di deploy automatizzato
 ├── index.html                    # Homepage principale
 ├── shop.html                     # Pagina e-commerce
+├── master.html                   # Pagina formazione
+├── rivista.html                  # Pagina rivista
+├── fondazione.html               # Pagina fondazione
 ├── assets/
-│   ├── css/
-│   │   ├── style.css             # Stili principali (10.4KB)
-│   │   └── shop.css              # Stili e-commerce (12.2KB)
-│   └── js/
-│       ├── main.js               # Funzionalità core (15.0KB)
-│       └── shop.js               # Sistema e-commerce (26.2KB)
+│   └── css/
+│       └── styles.css            # Stili principali
 ├── _rivista/                     # Collezione articoli rivista
 │   └── edizione-152-153.md       # Ultima edizione
 ├── _master/                      # Collezione corsi formazione
 │   └── casaclima-bioarchitettura.md
 ├── _news/                        # Collezione news e aggiornamenti
 │   └── 2024-08-15-nuovo-protocollo-sostenibilita.md
-├── executive-summary.md          # Analisi strategica per stakeholder
-├── visual-design-guidelines.md   # Linee guida design system
-└── website-design-analysis.md    # Analisi UX/UI completa
+├── .github/
+│   └── workflows/
+│       └── gh-pages.yml          # GitHub Actions per deployment
+├── admin/                        # NetlifyCMS (opzionale)
+└── vendor/                       # Dipendenze Ruby (auto-generato)
 ```
 
 ## 🚀 Installazione e Sviluppo
@@ -117,6 +120,68 @@ bundle exec jekyll build
 bundle exec jekyll doctor
 
 # Pulizia file temporanei
+bundle exec jekyll clean
+```
+
+## 🚀 Deploy e Hosting
+
+### Script di Deploy Automatizzato
+
+Il repository include uno script di deploy automatizzato per semplificare il processo di build e deployment:
+
+```bash
+# Deploy con build completo
+./deploy.sh
+
+# Avvia server di sviluppo con livereload
+./deploy.sh --serve
+
+# Avvia server di test senza livereload
+./deploy.sh --test
+```
+
+### Deployment su GitHub Pages
+
+Il sito è configurato per il deployment automatico su GitHub Pages tramite GitHub Actions:
+
+1. **URL di produzione**: https://hannesmitterer.github.io/bioarchittetura
+2. **Deployment automatico**: Ogni push al branch `main` o `master` attiva la build
+3. **Workflow CI/CD**: Configurato in `.github/workflows/gh-pages.yml`
+
+### Setup per GitHub Pages
+
+Per abilitare GitHub Pages per questo repository:
+
+1. Vai nelle **Settings** del repository GitHub
+2. Sezione **Pages** nel menu laterale
+3. **Source**: Seleziona "GitHub Actions" 
+4. Il workflow si attiverà automaticamente al prossimo push
+
+### Test Locale
+
+Prima del deployment, testa sempre in locale:
+
+```bash
+# Installa dipendenze (solo la prima volta)
+bundle install
+
+# Test di build
+bundle exec jekyll doctor
+bundle exec jekyll build
+
+# Server di sviluppo
+bundle exec jekyll serve
+
+# Oppure usa lo script di deploy
+./deploy.sh --serve
+```
+
+### Risoluzione Problemi
+
+**Errore di build**: Controlla la configurazione in `_config.yml`  
+**CSS non caricato**: Verifica i path in `assets/css/`  
+**Collezioni vuote**: Aggiungi contenuti in `_rivista/`, `_master/`, `_news/`
+
 bundle exec jekyll clean
 ```
 
