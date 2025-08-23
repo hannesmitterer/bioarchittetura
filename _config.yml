@@ -11,7 +11,7 @@ highlighter: rouge
 permalink: pretty
 timezone: Europe/Rome
 
-# Plugins
+# GitHub Pages compatible plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
@@ -22,15 +22,12 @@ collections:
   rivista:
     output: true
     permalink: /rivista/:name/
-    sort_by: date
   master:
     output: true
     permalink: /master/:name/
-    sort_by: date
   news:
     output: true
     permalink: /news/:name/
-    sort_by: date
 
 # Default values for collections
 defaults:
@@ -50,18 +47,8 @@ defaults:
       type: "news"
     values:
       layout: "news"
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
 
 # SEO and social
-logo: /assets/images/logo-bioarchitettura.png
-twitter:
-  username: bioarchitettura
-facebook:
-  publisher: bioarchitettura
 social:
   name: "Bioarchitettura® - Abitare la Terra"
   links:
@@ -74,6 +61,7 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - Gemfile.github
   - node_modules
   - vendor
   - .sass-cache
@@ -81,5 +69,6 @@ exclude:
   - .jekyll-metadata
   - admin/
 
-# GitHub Pages compatibility
+# GitHub Pages settings
 safe: true
+incremental: false
