@@ -1,0 +1,178 @@
+---
+layout: default
+---
+
+<div class="container">
+    <article class="rivista-article">
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="category">{{ page.category | capitalize }}</span>
+                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+            </div>
+            <h1 class="article-title">{{ page.title }}</h1>
+            {% if page.author %}
+            <p class="article-author">di {{ page.author }}</p>
+            {% endif %}
+            {% if page.description %}
+            <p class="article-description">{{ page.description }}</p>
+            {% endif %}
+        </header>
+
+        <div class="article-content">
+            {{ content }}
+        </div>
+
+        {% if page.tags %}
+        <div class="article-tags">
+            <h4>Tag:</h4>
+            {% for tag in page.tags %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if page.pdf_download %}
+        <div class="article-download">
+            <a href="{{ page.pdf_download }}" class="btn" target="_blank">📥 Scarica PDF</a>
+        </div>
+        {% endif %}
+    </article>
+
+    <nav class="article-nav">
+        {% assign sorted_rivista = site.rivista | sort: 'date' | reverse %}
+        {% for post in sorted_rivista %}
+            {% if post.url == page.url %}
+                {% assign current_index = forloop.index0 %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+
+        <div class="nav-links">
+            {% if current_index > 0 %}
+                {% assign prev_index = current_index | minus: 1 %}
+                {% assign prev_post = sorted_rivista[prev_index] %}
+                <a href="{{ prev_post.url }}" class="nav-link prev">← {{ prev_post.title | truncate: 50 }}</a>
+            {% endif %}
+
+            {% assign next_index = current_index | plus: 1 %}
+            {% if next_index < sorted_rivista.size %}
+                {% assign next_post = sorted_rivista[next_index] %}
+                <a href="{{ next_post.url }}" class="nav-link next">{{ next_post.title | truncate: 50 }} →</a>
+            {% endif %}
+        </div>
+    </nav>
+</div>
+
+<style>
+.rivista-article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+}
+
+.article-header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.article-meta {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.category {
+    background-color: var(--light-green);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.article-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+    color: var(--primary-green);
+}
+
+.article-author {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.article-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.article-content {
+    line-height: 1.8;
+    margin-bottom: var(--space-xl);
+}
+
+.article-tags {
+    margin: var(--space-lg) 0;
+    padding: var(--space-md);
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: var(--accent-earth);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    margin: 0 var(--space-xs) var(--space-xs) 0;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.article-download {
+    text-align: center;
+    margin: var(--space-xl) 0;
+}
+
+.article-nav {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid #e0e0e0;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+}
+
+.nav-link {
+    padding: var(--space-md);
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--primary-green);
+    font-weight: 500;
+    flex: 1;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--light-green);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 1.8rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+    }
+}
+</style>

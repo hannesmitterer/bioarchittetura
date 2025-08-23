@@ -1,0 +1,240 @@
+---
+layout: default
+---
+
+<div class="container">
+    <article class="master-article">
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="category">{{ page.categoria | default: "Master" }}</span>
+                <span class="level">{{ page.livello }}</span>
+                {% if page.stato == 'iscrizioni-aperte' %}
+                <span class="status open">Iscrizioni Aperte</span>
+                {% endif %}
+            </div>
+            <h1 class="article-title">{{ page.title }}</h1>
+            
+            <div class="course-info">
+                <div class="info-grid">
+                    {% if page.durata %}<div class="info-item"><strong>Durata:</strong> {{ page.durata }}</div>{% endif %}
+                    {% if page.prezzo %}<div class="info-item"><strong>Prezzo:</strong> {{ page.prezzo }}</div>{% endif %}
+                    {% if page.modalita %}<div class="info-item"><strong>Modalità:</strong> {{ page.modalita }}</div>{% endif %}
+                    {% if page.crediti %}<div class="info-item"><strong>CFP:</strong> {{ page.crediti }}</div>{% endif %}
+                    {% if page.prossima_edizione %}<div class="info-item"><strong>Prossima Edizione:</strong> {{ page.prossima_edizione }}</div>{% endif %}
+                </div>
+            </div>
+        </header>
+
+        <div class="article-content">
+            {{ content }}
+        </div>
+
+        {% if page.docenti %}
+        <section class="docenti-section">
+            <h3>Faculty</h3>
+            <ul class="docenti-list">
+                {% for docente in page.docenti %}
+                <li>{{ docente }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if page.certificazioni %}
+        <section class="certificazioni-section">
+            <h3>Certificazioni e Attestati</h3>
+            <ul class="certificazioni-list">
+                {% for cert in page.certificazioni %}
+                <li>✓ {{ cert }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if page.partners %}
+        <section class="partners-section">
+            <h3>Partner Istituzionali</h3>
+            <ul class="partners-list">
+                {% for partner in page.partners %}
+                <li>{{ partner }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        <div class="cta-section">
+            <a href="{{ '/shop.html' | relative_url }}#master" class="btn btn-primary">Iscriviti Ora</a>
+            <a href="mailto:master@bioarchitettura.org" class="btn btn-secondary">Richiedi Informazioni</a>
+        </div>
+    </article>
+</div>
+
+<style>
+.master-article {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+}
+
+.article-header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 2px solid var(--light-green);
+}
+
+.article-meta {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.category, .level, .status {
+    padding: var(--space-xs) var(--space-md);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.category {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+.level {
+    background-color: var(--accent-earth);
+    color: white;
+}
+
+.status.open {
+    background-color: #28a745;
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.article-title {
+    font-size: 2.2rem;
+    margin-bottom: var(--space-lg);
+    color: var(--primary-green);
+}
+
+.course-info {
+    background: linear-gradient(135deg, #f8f6f0, #e8f5e8);
+    padding: var(--space-lg);
+    border-radius: 12px;
+    margin-bottom: var(--space-lg);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+}
+
+.info-item {
+    padding: var(--space-sm);
+    background-color: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--light-green);
+}
+
+.article-content {
+    line-height: 1.8;
+    margin-bottom: var(--space-xl);
+}
+
+.docenti-section, .certificazioni-section, .partners-section {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg);
+    background-color: #fafafa;
+    border-radius: 8px;
+}
+
+.docenti-section h3, .certificazioni-section h3, .partners-section h3 {
+    color: var(--primary-green);
+    margin-bottom: var(--space-md);
+    border-bottom: 2px solid var(--light-green);
+    padding-bottom: var(--space-xs);
+}
+
+.docenti-list, .certificazioni-list, .partners-list {
+    list-style: none;
+    padding: 0;
+}
+
+.docenti-list li, .partners-list li {
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.certificazioni-list li {
+    padding: var(--space-xs) 0;
+    color: #28a745;
+    font-weight: 500;
+}
+
+.cta-section {
+    text-align: center;
+    margin: var(--space-xl) 0;
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+    border-radius: 12px;
+}
+
+.cta-section .btn {
+    margin: var(--space-sm);
+    min-width: 200px;
+}
+
+.btn-primary {
+    background-color: white;
+    color: var(--primary-green);
+    border: 2px solid white;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: var(--primary-green);
+}
+
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 1.6rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .article-meta {
+        justify-content: center;
+    }
+    
+    .cta-section .btn {
+        display: block;
+        margin: var(--space-sm) auto;
+        width: 100%;
+        max-width: 280px;
+    }
+}
+</style>
