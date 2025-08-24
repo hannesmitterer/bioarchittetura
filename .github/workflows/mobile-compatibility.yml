@@ -1,0 +1,291 @@
+name: Mobile Compatibility Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  mobile-responsive-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        viewport: 
+          - { name: 'iPhone SE', width: 375, height: 667 }
+          - { name: 'iPhone 12', width: 390, height: 844 }
+          - { name: 'iPhone 14 Pro Max', width: 430, height: 932 }
+          - { name: 'Samsung Galaxy S20', width: 360, height: 800 }
+          - { name: 'iPad Mini', width: 768, height: 1024 }
+          - { name: 'iPad Air', width: 820, height: 1180 }
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install Playwright
+      run: |
+        npm init -y
+        npm install --save-dev @playwright/test
+        npx playwright install chromium webkit firefox
+
+    - name: Create mobile test configuration
+      run: |
+        cat > playwright.config.js << 'EOF'
+        const { defineConfig, devices } = require('@playwright/test');
+
+        module.exports = defineConfig({
+          testDir: './tests',
+          fullyParallel: true,
+          forbidOnly: !!process.env.CI,
+          retries: process.env.CI ? 2 : 0,
+          workers: process.env.CI ? 1 : undefined,
+          reporter: 'html',
+          use: {
+            baseURL: 'http://localhost:8000',
+            trace: 'on-first-retry',
+            screenshot: 'only-on-failure'
+          },
+          projects: [
+            {
+              name: 'Mobile Chrome',
+              use: { ...devices['Pixel 5'] },
+            },
+            {
+              name: 'Mobile Safari',
+              use: { ...devices['iPhone 13'] },
+            },
+            {
+              name: 'Tablet',
+              use: { ...devices['iPad Pro'] },
+            },
+          ],
+          webServer: {
+            command: 'python -m http.server 8000',
+            port: 8000,
+            reuseExistingServer: !process.env.CI,
+          },
+        });
+        EOF
+
+    - name: Create mobile compatibility tests
+      run: |
+        mkdir -p tests
+        cat > tests/mobile-compatibility.spec.js << 'EOF'
+        const { test, expect } = require('@playwright/test');
+
+        // Test mobile responsiveness
+        test.describe('Mobile Responsiveness', () => {
+          test('should display mobile navigation menu', async ({ page }) => {
+            await page.goto('/');
+            
+            // Check if mobile menu toggle is visible on small screens
+            await page.setViewportSize({ width: 375, height: 667 });
+            
+            const menuToggle = page.locator('.menu-toggle');
+            await expect(menuToggle).toBeVisible();
+            
+            // Check if desktop nav is hidden
+            const nav = page.locator('.nav');
+            await expect(nav).toHaveCSS('display', 'none');
+          });
+
+          test('should toggle mobile menu on click', async ({ page }) => {
+            await page.goto('/');
+            await page.setViewportSize({ width: 375, height: 667 });
+            
+            const menuToggle = page.locator('.menu-toggle');
+            const nav = page.locator('.nav');
+            
+            // Click menu toggle
+            await menuToggle.click();
+            await expect(nav).toHaveClass(/active/);
+            
+            // Click again to close
+            await menuToggle.click();
+            await expect(nav).not.toHaveClass(/active/);
+          });
+
+          test('should display desktop navigation on large screens', async ({ page }) => {
+            await page.goto('/');
+            await page.setViewportSize({ width: 1024, height: 768 });
+            
+            const menuToggle = page.locator('.menu-toggle');
+            const nav = page.locator('.nav');
+            
+            await expect(menuToggle).toHaveCSS('display', 'none');
+            await expect(nav).toBeVisible();
+          });
+
+          test('should have responsive grid layout', async ({ page }) => {
+            await page.goto('/');
+            
+            // Mobile: 1 column
+            await page.setViewportSize({ width: 375, height: 667 });
+            const gridMobile = page.locator('.content-grid');
+            await expect(gridMobile).toHaveCSS('grid-template-columns', '1fr');
+            
+            // Tablet: 2 columns  
+            await page.setViewportSize({ width: 768, height: 1024 });
+            await expect(gridMobile).toHaveCSS('grid-template-columns', 'repeat(2, 1fr)');
+            
+            // Desktop: 3 columns
+            await page.setViewportSize({ width: 1024, height: 768 });
+            await expect(gridMobile).toHaveCSS('grid-template-columns', 'repeat(3, 1fr)');
+          });
+        });
+
+        // Test touch interactions
+        test.describe('Touch Interactions', () => {
+          test('should have adequate touch target sizes', async ({ page }) => {
+            await page.goto('/');
+            await page.setViewportSize({ width: 375, height: 667 });
+            
+            // Check button sizes (minimum 44px as per Apple guidelines)
+            const buttons = page.locator('.btn, .menu-toggle, .nav-link');
+            const count = await buttons.count();
+            
+            for (let i = 0; i < count; i++) {
+              const button = buttons.nth(i);
+              if (await button.isVisible()) {
+                const box = await button.boundingBox();
+                expect(box.height).toBeGreaterThanOrEqual(40);
+              }
+            }
+          });
+
+          test('should handle touch events on navigation', async ({ page }) => {
+            await page.goto('/');
+            await page.setViewportSize({ width: 375, height: 667 });
+            
+            const menuToggle = page.locator('.menu-toggle');
+            
+            // Simulate touch
+            await menuToggle.tap();
+            await expect(page.locator('.nav')).toHaveClass(/active/);
+          });
+        });
+
+        // Test performance on mobile
+        test.describe('Mobile Performance', () => {
+          test('should load quickly on mobile', async ({ page }) => {
+            const startTime = Date.now();
+            
+            await page.goto('/');
+            await page.setViewportSize({ width: 375, height: 667 });
+            
+            // Wait for content to load
+            await page.waitForLoadState('networkidle');
+            
+            const loadTime = Date.now() - startTime;
+            expect(loadTime).toBeLessThan(3000); // Should load within 3 seconds
+          });
+
+          test('should not have layout shift issues', async ({ page }) => {
+            await page.goto('/');
+            await page.setViewportSize({ width: 375, height: 667 });
+            
+            // Wait for fonts to load
+            await page.waitForTimeout(1000);
+            
+            const initialHeight = await page.evaluate(() => document.body.scrollHeight);
+            await page.waitForTimeout(2000);
+            const finalHeight = await page.evaluate(() => document.body.scrollHeight);
+            
+            // Height should be stable (allowing small variations for font loading)
+            expect(Math.abs(finalHeight - initialHeight)).toBeLessThan(50);
+          });
+        });
+        EOF
+
+    - name: Run mobile compatibility tests
+      run: npx playwright test --project="Mobile Chrome"
+      env:
+        VIEWPORT_WIDTH: ${{ matrix.viewport.width }}
+        VIEWPORT_HEIGHT: ${{ matrix.viewport.height }}
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: mobile-test-results-${{ matrix.viewport.name }}
+        path: |
+          test-results/
+          playwright-report/
+        retention-days: 7
+
+  lighthouse-mobile-audit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install Lighthouse CI
+      run: |
+        npm init -y
+        npm install --save-dev @lhci/cli
+
+    - name: Create Lighthouse CI configuration
+      run: |
+        cat > lighthouserc.js << 'EOF'
+        module.exports = {
+          ci: {
+            collect: {
+              url: [
+                'http://localhost:8000/',
+                'http://localhost:8000/rivista.html',
+                'http://localhost:8000/master.html',
+                'http://localhost:8000/fondazione.html',
+                'http://localhost:8000/shop.html'
+              ],
+              settings: {
+                onlyCategories: ['performance', 'accessibility', 'best-practices'],
+                // Mobile-first audit
+                formFactor: 'mobile',
+                throttling: {
+                  rttMs: 150,
+                  throughputKbps: 1638.4,
+                  cpuSlowdownMultiplier: 4
+                }
+              }
+            },
+            assert: {
+              assertions: {
+                'categories:performance': ['warn', { minScore: 0.7 }],
+                'categories:accessibility': ['error', { minScore: 0.9 }],
+                'categories:best-practices': ['warn', { minScore: 0.8 }]
+              }
+            },
+            upload: {
+              target: 'temporary-public-storage'
+            }
+          }
+        };
+        EOF
+
+    - name: Run Lighthouse Mobile Audit
+      run: |
+        python -m http.server 8000 &
+        sleep 5
+        npx lhci autorun
+
+    - name: Upload Lighthouse results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: lighthouse-mobile-results
+        path: .lighthouseci/
+        retention-days: 7

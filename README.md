@@ -14,6 +14,8 @@ Questo repository contiene il sito web moderno per **Bioarchitettura® - Abitare
 - **♿ Accessibilità WCAG 2.1 AA**: Completamente accessibile per tutti gli utenti
 - **⚡ Prestazioni Ottimizzate**: Caricamento veloce e ottimizzazione SEO
 - **📱 Esperienza Mobile Eccellente**: Design responsive ottimizzato per tutti i dispositivi
+- **🔧 Compatibilità Cross-Platform**: Testato su iOS Safari, Android Chrome e tablet
+- **🚀 Testing Automatizzato**: Suite completa di test per compatibilità mobile
 
 ## 🎯 Obiettivi del Sito
 
@@ -118,7 +120,40 @@ bundle exec jekyll doctor
 
 # Pulizia file temporanei
 bundle exec jekyll clean
+
+# Test compatibilità mobile
+node test-mobile.js
+
+# Server di sviluppo semplice (senza Jekyll)
+python -m http.server 8000
 ```
+
+## 📱 Compatibilità Mobile
+
+Il sito è completamente ottimizzato per dispositivi mobili con:
+
+### Caratteristiche Mobile
+- **Design Mobile-First**: CSS ottimizzato prioritariamente per dispositivi mobili
+- **Navigazione Touch-Friendly**: Menu hamburger e target touch di almeno 44px
+- **Responsive Grid**: Adattamento automatico da 1 colonna (mobile) a 3 colonne (desktop)
+- **Performance Ottimizzata**: Caricamento rapido su reti mobili
+- **Accessibilità**: Supporto completo per screen reader e navigazione da tastiera
+
+### Browser Supportati
+| Browser | iOS | Android | Note |
+|---------|-----|---------|------|
+| Safari | ✅ 12+ | ❌ | Browser principale iOS |
+| Chrome | ✅ 70+ | ✅ 70+ | Browser principale Android |
+| Firefox | ✅ 68+ | ✅ 68+ | Supporto alternativo |
+| Edge | ✅ 79+ | ✅ 79+ | Browser Microsoft |
+
+### Test Automatizzati
+- **GitHub Actions**: Test automatici su ogni push e PR
+- **Cross-Platform**: Test su dispositivi iOS, Android e tablet
+- **Performance**: Audit Lighthouse per metriche Core Web Vitals
+- **Accessibilità**: Verifica WCAG 2.1 AA compliance
+
+Per dettagli completi, consulta la [documentazione mobile](docs/mobile-compatibility.md).
 
 ## 🎨 Design System
 

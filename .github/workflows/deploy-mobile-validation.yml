@@ -1,0 +1,224 @@
+name: Deploy and Validate Mobile
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+        - production
+        - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Run mobile compatibility tests
+      run: |
+        node test-mobile.js
+
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        exclude_assets: '.github,test-mobile.js,docs/mobile-test-results.html'
+
+  post-deploy-validation:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install Playwright
+      run: |
+        npm init -y
+        npm install --save-dev @playwright/test
+        npx playwright install chromium webkit firefox
+
+    - name: Wait for deployment
+      run: sleep 60
+
+    - name: Run live site mobile tests
+      run: |
+        cat > live-mobile-test.js << 'EOF'
+        const { test, expect } = require('@playwright/test');
+
+        test.describe('Live Site Mobile Tests', () => {
+          const siteUrl = 'https://hannesmitterer.github.io/bioarchittetura';
+          
+          test('mobile navigation works on live site', async ({ page }) => {
+            await page.goto(siteUrl);
+            await page.setViewportSize({ width: 375, height: 667 });
+            
+            const menuToggle = page.locator('.menu-toggle');
+            await expect(menuToggle).toBeVisible();
+            
+            await menuToggle.click();
+            const nav = page.locator('.nav');
+            await expect(nav).toHaveClass(/active/);
+          });
+
+          test('responsive layout works on live site', async ({ page }) => {
+            await page.goto(siteUrl);
+            
+            // Test mobile
+            await page.setViewportSize({ width: 375, height: 667 });
+            const grid = page.locator('.content-grid');
+            await expect(grid).toHaveCSS('grid-template-columns', '1fr');
+            
+            // Test tablet
+            await page.setViewportSize({ width: 768, height: 1024 });
+            await expect(grid).toHaveCSS('grid-template-columns', 'repeat(2, 1fr)');
+            
+            // Test desktop
+            await page.setViewportSize({ width: 1024, height: 768 });
+            await expect(grid).toHaveCSS('grid-template-columns', 'repeat(3, 1fr)');
+          });
+
+          test('site loads quickly on mobile', async ({ page }) => {
+            const startTime = Date.now();
+            await page.goto(siteUrl);
+            await page.setViewportSize({ width: 375, height: 667 });
+            await page.waitForLoadState('networkidle');
+            
+            const loadTime = Date.now() - startTime;
+            expect(loadTime).toBeLessThan(5000); // 5 seconds for live site
+          });
+        });
+        EOF
+
+        cat > playwright.config.live.js << 'EOF'
+        const { defineConfig, devices } = require('@playwright/test');
+
+        module.exports = defineConfig({
+          testDir: './',
+          fullyParallel: true,
+          retries: 3,
+          workers: 2,
+          reporter: [['html', { outputFolder: 'live-test-results' }]],
+          use: {
+            trace: 'on-first-retry',
+            screenshot: 'only-on-failure'
+          },
+          projects: [
+            {
+              name: 'Mobile Chrome',
+              use: { ...devices['Pixel 5'] },
+            },
+            {
+              name: 'Mobile Safari',
+              use: { ...devices['iPhone 13'] },
+            },
+          ],
+        });
+        EOF
+
+        npx playwright test live-mobile-test.js --config=playwright.config.live.js
+
+    - name: Upload live test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: live-mobile-test-results
+        path: live-test-results/
+        retention-days: 7
+
+  mobile-performance-audit:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Run Lighthouse Mobile Audit on Live Site
+      run: |
+        npm install -g @lhci/cli
+        
+        cat > .lighthouserc.live.js << 'EOF'
+        module.exports = {
+          ci: {
+            collect: {
+              url: [
+                'https://hannesmitterer.github.io/bioarchittetura/',
+                'https://hannesmitterer.github.io/bioarchittetura/rivista.html',
+                'https://hannesmitterer.github.io/bioarchittetura/master.html',
+                'https://hannesmitterer.github.io/bioarchittetura/fondazione.html',
+                'https://hannesmitterer.github.io/bioarchittetura/shop.html'
+              ],
+              settings: {
+                onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
+                formFactor: 'mobile',
+                throttling: {
+                  rttMs: 150,
+                  throughputKbps: 1638.4,
+                  cpuSlowdownMultiplier: 4
+                }
+              }
+            },
+            assert: {
+              assertions: {
+                'categories:performance': ['warn', { minScore: 0.7 }],
+                'categories:accessibility': ['error', { minScore: 0.9 }],
+                'categories:best-practices': ['warn', { minScore: 0.8 }],
+                'categories:seo': ['warn', { minScore: 0.9 }]
+              }
+            },
+            upload: {
+              target: 'temporary-public-storage'
+            }
+          }
+        };
+        EOF
+        
+        lhci autorun --config=.lighthouserc.live.js
+
+    - name: Comment PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## 📱 Mobile Compatibility Deployment Complete
+            
+            ✅ **Mobile tests passed**
+            ✅ **Cross-platform validation complete**  
+            ✅ **Performance audit completed**
+            
+            The site has been deployed and all mobile compatibility tests are passing.
+            
+            ### Quick Mobile Test
+            Test the mobile experience at: https://hannesmitterer.github.io/bioarchittetura/
+            
+            1. Open on mobile device or use browser dev tools
+            2. Verify hamburger menu works
+            3. Test touch interactions
+            4. Check responsive layout
+            
+            [View detailed mobile compatibility documentation](https://github.com/hannesmitterer/bioarchittetura/blob/main/docs/mobile-compatibility.md)`
+          })
