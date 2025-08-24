@@ -112,10 +112,23 @@ a:hover {
   font-weight: 700;
   color: var(--primary-green);
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .logo:hover {
   color: var(--light-green);
+}
+
+.logo-img {
+  height: 32px;
+  width: auto;
+  max-width: 150px;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover .logo-img {
+  opacity: 0.8;
 }
 
 /* Navigation */

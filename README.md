@@ -73,6 +73,14 @@ bioarchittetura/
 │   └── casaclima-bioarchitettura.md
 ├── _news/                        # Collezione news e aggiornamenti
 │   └── 2024-08-15-nuovo-protocollo-sostenibilita.md
+├── assets/                       # Assets visivi e media
+│   ├── images/
+│   │   ├── logos/               # Logo Bioarchitettura®
+│   │   ├── hero/                # Immagini hero e background
+│   │   ├── content/             # Immagini contenuti (fondazione, master)
+│   │   └── social/              # Immagini social media/Open Graph
+│   └── ATTRIBUTION.md           # Documentazione asset e copyright
+├── favicon.ico                   # Favicon del sito
 ├── executive-summary.md          # Analisi strategica per stakeholder
 ├── visual-design-guidelines.md   # Linee guida design system
 └── website-design-analysis.md    # Analisi UX/UI completa
@@ -139,6 +147,16 @@ Il sito utilizza un design system coerente ispirato ai principi dell'architettur
 - **Sistema a 12 colonne**: Ispirato alle griglie architettoniche
 - **Baseline 8px**: Ritmo verticale coerente
 - **Breakpoint responsivi**: Mobile-first approach
+
+### 🖼️ Visual Assets
+Il sito integra asset visivi originali da www.bioarchitettura.org:
+- **Logo ufficiale**: Bioarchitettura® PNG (86x50px) per header
+- **Favicon**: Icona per browser tabs
+- **Immagini hero**: Background di alta qualità per sezioni principali
+- **Immagini contenuti**: Visual specifici per fondazione, master, etc.
+- **Social media**: Immagini Open Graph per condivisione social
+
+Tutti gli asset rispettano l'identità visiva della Fondazione Bioarchitettura® e sono documentati nel file `assets/ATTRIBUTION.md`.
 
 ## 🛒 Sistema E-commerce
 
