@@ -43,6 +43,10 @@ body {
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--neutral-light);
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(127, 176, 105, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 75px 75px, rgba(45, 80, 22, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -118,17 +122,28 @@ a:hover {
 }
 
 .logo-image {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .logo-text {
   font-family: var(--font-accent);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--primary-green);
+}
+
+@media (min-width: 768px) {
+  .logo-image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+  }
 }
 
 .logo:hover .logo-text {
@@ -267,6 +282,19 @@ a:hover {
 .section-title {
   text-align: center;
   margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-green), var(--light-green), var(--accent-earth));
+  border-radius: 2px;
 }
 
 .section-subtitle {
@@ -282,9 +310,21 @@ a:hover {
 /* Image Gallery Styles */
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-md);
   margin-top: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .image-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .image-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .gallery-item {
