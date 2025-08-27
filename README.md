@@ -194,6 +194,11 @@ Aggiornamenti e novità settoriali:
 4. Push del branch (`git push origin feature/nome-feature`)
 5. Apertura Pull Request
 
+### Workflow e CI/CD
+- **Jekyll Deployment**: Automatico su push al branch main via GitHub Pages
+- **Runtime Logs**: Sistema per prevenire warning upload-artifact (vedi [.github/RUNTIME_LOGS_FIX.md](.github/RUNTIME_LOGS_FIX.md))
+- **Script Utilità**: Disponibili in `.github/scripts/` per manutenzione automatizzata
+
 ## 📞 Supporto e Contatti
 
 ### Supporto Tecnico
