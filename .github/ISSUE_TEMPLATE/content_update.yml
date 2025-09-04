@@ -1,0 +1,47 @@
+---
+name: Content Update
+about: Request updates to articles, news, or website content
+title: '[CONTENT] Brief description of content change needed'
+labels: ['content', 'needs-review']
+assignees: []
+
+---
+
+## 📝 Content Update Request
+
+### Content Type
+- [ ] Rivista Article
+- [ ] News/Events
+- [ ] Master Course Information
+- [ ] Foundation Information
+- [ ] General Website Content
+- [ ] Other: _____________
+
+### Content Location
+Please specify where the content is located:
+- **Page/Section**: [e.g. Home page, Rivista section, Master page]
+- **URL**: [if applicable]
+- **File**: [if you know the specific file]
+
+### Current Content Issue
+Describe what's wrong with the current content or what's missing:
+
+### Proposed Changes
+Describe the changes you'd like to see:
+
+### Supporting Materials
+If you have new content, images, or documents to include, please describe them:
+
+### Deadline/Urgency
+- [ ] Urgent - Needs immediate attention
+- [ ] Normal - Can be addressed in regular updates
+- [ ] Low priority - Enhancement for future consideration
+
+### Content Guidelines Compliance
+- [ ] Content follows Bioarchitettura® editorial style
+- [ ] Content is relevant to sustainable architecture
+- [ ] Images/media are properly licensed or owned
+- [ ] Content has been reviewed for accuracy
+
+### Additional Context
+Any other information that might be helpful:

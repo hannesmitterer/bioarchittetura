@@ -379,3 +379,264 @@ button:focus,
   outline: 2px solid var(--light-green);
   outline-offset: 2px;
 }
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-green);
+  color: var(--white);
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Notification System */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 400px;
+  z-index: 1000;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideInNotification 0.3s ease forwards;
+}
+
+.notification-info {
+  background-color: #3498db;
+  color: white;
+}
+
+.notification-success {
+  background-color: #27ae60;
+  color: white;
+}
+
+.notification-warning {
+  background-color: #f39c12;
+  color: white;
+}
+
+.notification-error {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.notification-content {
+  padding: var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.notification-message {
+  flex: 1;
+  margin-right: var(--space-sm);
+  line-height: 1.4;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.notification-close:hover {
+  opacity: 1;
+}
+
+@keyframes slideInNotification {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Payment Modal */
+.payment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.payment-modal-content {
+  background-color: var(--white);
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  animation: modalSlideIn 0.3s ease forwards;
+}
+
+.payment-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--neutral-light);
+}
+
+.payment-modal-header h3 {
+  margin: 0;
+  color: var(--primary-green);
+}
+
+.payment-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: var(--space-xs);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.payment-modal-close:hover {
+  background-color: var(--neutral-light);
+}
+
+.payment-modal-body {
+  padding: var(--space-lg);
+}
+
+.payment-options {
+  margin-top: var(--space-lg);
+}
+
+.payment-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  border: 2px solid var(--neutral-light);
+  border-radius: 8px;
+  background-color: var(--white);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.payment-btn:hover {
+  border-color: var(--primary-green);
+  background-color: var(--neutral-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-icon {
+  font-size: 1.5rem;
+  margin-right: var(--space-sm);
+}
+
+.stripe-btn:hover {
+  border-color: #635bff;
+  background-color: #f8f8ff;
+}
+
+.paypal-btn:hover {
+  border-color: #0070ba;
+  background-color: #f0f8ff;
+}
+
+.bank-btn:hover {
+  border-color: var(--accent-earth);
+  background-color: #faf9f7;
+}
+
+.custom-amount {
+  width: 100%;
+  padding: var(--space-sm);
+  border: 2px solid var(--neutral-light);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: var(--space-md);
+  transition: border-color 0.3s ease;
+}
+
+.custom-amount:focus {
+  border-color: var(--primary-green);
+  outline: none;
+}
+
+.bank-details {
+  background-color: var(--neutral-light);
+  padding: var(--space-md);
+  border-radius: 8px;
+  margin: var(--space-md) 0;
+  font-family: monospace;
+}
+
+.bank-details p {
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Mobile responsive for notifications and modals */
+@media (max-width: 480px) {
+  .notification {
+    left: 10px;
+    right: 10px;
+    max-width: none;
+  }
+  
+  .payment-modal-content {
+    width: 95%;
+    margin: 10px;
+  }
+  
+  .payment-modal-header,
+  .payment-modal-body {
+    padding: var(--space-md);
+  }
+  
+  .payment-btn {
+    padding: var(--space-sm);
+    font-size: 0.9rem;
+  }
+  
+  .payment-icon {
+    font-size: 1.25rem;
+  }
+}

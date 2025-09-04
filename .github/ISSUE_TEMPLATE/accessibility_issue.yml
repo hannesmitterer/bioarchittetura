@@ -1,0 +1,55 @@
+---
+name: Accessibility Issue
+about: Report accessibility problems or suggest improvements
+title: '[A11Y] Brief description of accessibility issue'
+labels: ['accessibility', 'needs-review']
+assignees: []
+
+---
+
+## ♿ Accessibility Issue
+
+### Accessibility Problem
+Describe the accessibility barrier you encountered:
+
+### WCAG Guidelines Affected
+Which WCAG 2.1 AA guidelines are impacted?
+- [ ] Perceivable (images, videos, audio)
+- [ ] Operable (keyboard navigation, timing)
+- [ ] Understandable (readable text, predictable functionality)
+- [ ] Robust (compatible with assistive technologies)
+
+### Assistive Technology Used
+- [ ] Screen reader (specify: NVDA, JAWS, VoiceOver, etc.)
+- [ ] Keyboard navigation only
+- [ ] Voice control software
+- [ ] Screen magnification software
+- [ ] Other: _____________
+
+### Steps to Reproduce
+1. Navigate to '...'
+2. Using [assistive technology], attempt to '...'
+3. Observe the issue
+
+### Expected Behavior
+What should happen to make this accessible?
+
+### Current Behavior
+What actually happens that creates the accessibility barrier?
+
+### Impact Level
+- [ ] Critical - Prevents access to essential functionality
+- [ ] High - Significantly impacts user experience
+- [ ] Medium - Creates some difficulty but workarounds exist
+- [ ] Low - Minor improvement opportunity
+
+### Suggested Solution
+If you have ideas for how to fix this, please share:
+
+### Technical Details
+- **Browser**: [e.g. Chrome, Firefox, Safari]
+- **Assistive Technology**: [e.g. NVDA 2023.1, VoiceOver macOS 13]
+- **Operating System**: [e.g. Windows 11, macOS 13, iOS 16]
+
+### Additional Context
+Any other information about this accessibility issue:
