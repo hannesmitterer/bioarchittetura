@@ -3,22 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Bioarchitettura® - Abitare la Terra</title>
-    <meta name="description" content="Bioarchitettura® è la rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica.">
+    <meta name="description" content="Bioarchitettura® è la prima rivista italiana di bioarchitettura dal 1992. Architettura sostenibile, edilizia ecologica, progettazione bioclimatica. 30 anni di eccellenza italiana.">
+    <meta name="keywords" content="bioarchitettura, architettura sostenibile, edilizia ecologica, progettazione bioclimatica, rivista italiana, sostenibilità ambientale">
+    <meta name="author" content="Bioarchitettura® - Abitare la Terra">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="it-IT">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hannesmitterer.github.io/bioarchittetura/">
+    <meta property="og:title" content="Bioarchitettura® - Abitare la Terra | La Prima Rivista Italiana di Bioarchitettura">
+    <meta property="og:description" content="Dal 1992 la rivista italiana di riferimento per architettura sostenibile, edilizia ecologica e progettazione bioclimatica. 30 anni di eccellenza.">
+    <meta property="og:image" content="https://hannesmitterer.github.io/bioarchittetura/LogoBIO_250x250.jpg">
+    <meta property="og:site_name" content="Bioarchitettura® - Abitare la Terra">
+    <meta property="og:locale" content="it_IT">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://hannesmitterer.github.io/bioarchittetura/">
+    <meta name="twitter:title" content="Bioarchitettura® - Abitare la Terra | La Prima Rivista Italiana di Bioarchitettura">
+    <meta name="twitter:description" content="Dal 1992 la rivista italiana di riferimento per architettura sostenibile, edilizia ecologica e progettazione bioclimatica. 30 anni di eccellenza.">
+    <meta name="twitter:image" content="https://hannesmitterer.github.io/bioarchittetura/LogoBIO_250x250.jpg">
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hannesmitterer.github.io/bioarchittetura/">
+    
+    <title>Bioarchitettura® - Abitare la Terra | La Prima Rivista Italiana di Bioarchitettura</title>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bioarchitettura® - Abitare la Terra",
+      "alternateName": "Bioarchitettura",
+      "url": "https://hannesmitterer.github.io/bioarchittetura/",
+      "logo": "https://hannesmitterer.github.io/bioarchittetura/LogoBIO_250x250.jpg",
+      "description": "La prima rivista italiana di bioarchitettura dal 1992. Architettura sostenibile, edilizia ecologica, progettazione bioclimatica.",
+      "foundingDate": "1992",
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Ugo Sasso"
+        },
+        {
+          "@type": "Person", 
+          "name": "Wittfrida Mitterer"
+        }
+      ],
+      "sameAs": [
+        "https://www.bioarchitettura.org"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+39 0471 973097",
+        "contactType": "customer service",
+        "email": "info@bioarchitettura.org",
+        "availableLanguage": "Italian"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IT",
+        "addressLocality": "Italy"
+      },
+      "publishingPrinciples": "https://hannesmitterer.github.io/bioarchittetura/",
+      "knowsAbout": [
+        "Architettura sostenibile",
+        "Bioarchitettura", 
+        "Edilizia ecologica",
+        "Progettazione bioclimatica",
+        "Sostenibilità ambientale",
+        "Materiali naturali",
+        "Efficienza energetica"
+      ]
+    }
+    </script>
 </head>
 <body>
-    <header class="header">
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+    
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Bioarchitettura®</a>
-                <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
-                <nav class="nav" id="mainNav">
+                <a href="index.html" class="logo" aria-label="Vai alla homepage di Bioarchitettura">Bioarchitettura®</a>
+                <button class="menu-toggle" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMenu()">☰</button>
+                <nav class="nav" id="mainNav" role="navigation" aria-label="Menu principale">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
                         <li class="nav-item"><a href="rivista.html" class="nav-link">Rivista</a></li>
                         <li class="nav-item"><a href="master.html" class="nav-link">Master</a></li>
                         <li class="nav-item"><a href="fondazione.html" class="nav-link">Fondazione</a></li>
@@ -29,7 +113,7 @@
         </div>
     </header>
 
-    <main class="main">
+    <main class="main" id="main-content" role="main">
         <div class="container">
             <section class="hero">
                 <h1 class="hero-title">Abitare la Terra</h1>
@@ -105,7 +189,11 @@
     <script>
         function toggleMenu() {
             const nav = document.getElementById('mainNav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const isExpanded = nav.classList.contains('active');
+            
             nav.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
         }
         
         // Close menu when clicking outside
@@ -115,13 +203,17 @@
             
             if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
                 nav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             }
         });
         
         // Close menu when window is resized to desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth >= 768) {
-                document.getElementById('mainNav').classList.remove('active');
+                const nav = document.getElementById('mainNav');
+                const menuToggle = document.querySelector('.menu-toggle');
+                nav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             }
         });
     </script>

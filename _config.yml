@@ -1,0 +1,116 @@
+# Site settings
+title: "Bioarchitettura® - Abitare la Terra"
+description: >-
+  La prima rivista italiana di bioarchitettura dal 1992. 
+  Architettura sostenibile, edilizia ecologica, progettazione bioclimatica.
+  30 anni di eccellenza nell'architettura sostenibile italiana.
+
+baseurl: "/bioarchittetura"
+url: "https://hannesmitterer.github.io"
+
+# Site configuration
+lang: it-IT
+timezone: Europe/Rome
+
+# Author information
+author:
+  name: "Bioarchitettura® - Abitare la Terra"
+  email: "info@bioarchitettura.org"
+  url: "https://www.bioarchitettura.org"
+
+# Social media and contact
+social:
+  email: info@bioarchitettura.org
+  phone: "+39 0471 973097"
+  website: "https://www.bioarchitettura.org"
+
+# SEO settings
+google_site_verification: ""
+bing_site_verification: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Plugin configuration
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  rivista:
+    output: true
+    permalink: /:collection/:name/
+  master:
+    output: true  
+    permalink: /:collection/:name/
+  news:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Bioarchitettura®"
+  - scope:
+      path: ""
+      type: "rivista"
+    values:
+      layout: "article"
+  - scope:
+      path: ""
+      type: "master"
+    values:
+      layout: "course"
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: "news"
+
+# Sass configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .github/
+  - README.md
+  - readme.md
+
+# Include files
+include:
+  - _pages
+
+# Compression
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+
+# Archive settings
+archive:
+  type: yearly
+  layout: archive
+  permalinks:
+    year: '/archivio/:year/'
+    month: '/archivio/:year/:month/'
+    day: '/archivio/:year/:month/:day/'

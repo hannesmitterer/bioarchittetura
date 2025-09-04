@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina non trovata - 404 | Bioarchitettura®</title>
+    <meta name="description" content="La pagina che stai cercando non è stata trovata. Torna alla homepage di Bioarchitettura® o utilizza la navigazione per trovare quello che cerchi.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+    
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo" aria-label="Vai alla homepage di Bioarchitettura">Bioarchitettura®</a>
+                <button class="menu-toggle" aria-label="Apri menu di navigazione" aria-expanded="false" onclick="toggleMenu()">☰</button>
+                <nav class="nav" id="mainNav" role="navigation" aria-label="Menu principale">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="rivista.html" class="nav-link">Rivista</a></li>
+                        <li class="nav-item"><a href="master.html" class="nav-link">Master</a></li>
+                        <li class="nav-item"><a href="fondazione.html" class="nav-link">Fondazione</a></li>
+                        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main" id="main-content" role="main">
+        <div class="container">
+            <section class="hero">
+                <h1 class="hero-title">404 - Pagina non trovata</h1>
+                <p class="hero-subtitle">
+                    La pagina che stai cercando non esiste o è stata spostata.
+                </p>
+            </section>
+
+            <section class="section text-center">
+                <div class="card" style="max-width: 600px; margin: 0 auto;">
+                    <h2>Cosa puoi fare?</h2>
+                    <ul style="text-align: left; margin: var(--space-md) 0; list-style-position: inside;">
+                        <li>Verifica di aver digitato correttamente l'indirizzo</li>
+                        <li>Torna alla <a href="index.html">homepage</a></li>
+                        <li>Esplora la nostra <a href="rivista.html">rivista</a></li>
+                        <li>Scopri i nostri <a href="master.html">corsi di formazione</a></li>
+                        <li>Visita il nostro <a href="shop.html">shop</a></li>
+                        <li>Contattaci: <a href="mailto:info@bioarchitettura.org">info@bioarchitettura.org</a></li>
+                    </ul>
+                    <div style="margin-top: var(--space-lg);">
+                        <a href="index.html" class="btn">Torna alla Homepage</a>
+                        <a href="javascript:history.back()" class="btn-secondary btn">Pagina Precedente</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 class="footer-title">Bioarchitettura®</h3>
+                    <p>Rivista di architettura sostenibile dal 1990</p>
+                </div>
+                <div>
+                    <p>&copy; 2024 Bioarchitettura®. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const isExpanded = nav.classList.contains('active');
+            
+            nav.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                const nav = document.getElementById('mainNav');
+                const menuToggle = document.querySelector('.menu-toggle');
+                nav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+</body>
+</html>

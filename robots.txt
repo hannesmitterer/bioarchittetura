@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hannesmitterer.github.io/bioarchittetura/sitemap.xml
+
+# Disallow certain paths
+Disallow: /_site/
+Disallow: /admin/
+Disallow: /.github/
+Disallow: /vendor/
+Disallow: /node_modules/
+
+# Allow access to CSS and JS files
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Crawl delay (optional)
+Crawl-delay: 1
