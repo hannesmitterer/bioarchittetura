@@ -11,16 +11,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
+    <!-- Skip navigation link for keyboard users -->
+    <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Bioarchitettura®</a>
-                <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
-                <nav class="nav" id="mainNav">
+                <a href="index.html" class="logo" aria-label="Bioarchitettura homepage">
+                    <img src="logo-small.jpg" alt="Logo Bioarchitettura" width="40" height="40" class="logo-img">
+                    Bioarchitettura®
+                </a>
+                <button class="menu-toggle" aria-label="Apri menu di navigazione" aria-expanded="false" aria-controls="mainNav" onclick="toggleMenu()">☰</button>
+                <nav class="nav" id="mainNav" role="navigation" aria-label="Menu principale">
                     <ul class="nav-list">
                         <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="rivista.html" class="nav-link">Rivista</a></li>
-                        <li class="nav-item"><a href="master.html" class="nav-link active">Master</a></li>
+                        <li class="nav-item"><a href="master.html" class="nav-link active" aria-current="page">Master</a></li>
                         <li class="nav-item"><a href="fondazione.html" class="nav-link">Fondazione</a></li>
                         <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
                     </ul>
@@ -29,45 +34,45 @@
         </div>
     </header>
 
-    <main class="main">
+    <main class="main" id="main-content" role="main">
         <div class="container">
-            <section class="hero">
-                <h1 class="hero-title">Master e Formazione</h1>
+            <section class="hero" aria-labelledby="hero-title">
+                <h1 class="hero-title" id="hero-title">Master e Formazione</h1>
                 <p class="hero-subtitle">
                     Percorsi di alta formazione per professionisti che vogliono specializzarsi 
                     in bioarchitettura, sostenibilità ambientale e progettazione bioclimatica.
                 </p>
             </section>
 
-            <section class="section">
-                <h2 class="section-title">I Nostri Programmi Formativi</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3 class="card-title">🎓 Master Specialistici</h3>
+            <section class="section" aria-labelledby="programs-title">
+                <h2 class="section-title" id="programs-title">I Nostri Programmi Formativi</h2>
+                <div class="content-grid" role="list">
+                    <div class="card" role="listitem">
+                        <h3 class="card-title"><span aria-hidden="true">🎓</span> Master Specialistici</h3>
                         <p>Corsi di lunga durata (6-12 mesi) per acquisire competenze avanzate in progettazione sostenibile, certificazioni ambientali e tecnologie innovative.</p>
                     </div>
-                    <div class="card">
-                        <h3 class="card-title">⚡ Workshop Intensivi</h3>
+                    <div class="card" role="listitem">
+                        <h3 class="card-title"><span aria-hidden="true">⚡</span> Workshop Intensivi</h3>
                         <p>Seminari pratici di 2-5 giorni su tematiche specifiche: materiali naturali, sistemi costruttivi, software di simulazione energetica.</p>
                     </div>
-                    <div class="card">
-                        <h3 class="card-title">🌐 Corsi Online</h3>
+                    <div class="card" role="listitem">
+                        <h3 class="card-title"><span aria-hidden="true">🌐</span> Corsi Online</h3>
                         <p>Formazione a distanza per permettere la partecipazione da tutta Italia, con sessioni interattive e materiali didattici sempre accessibili.</p>
                     </div>
                 </div>
             </section>
 
-            <section class="section">
-                <h2 class="section-title">Corsi in Evidenza</h2>
-                <div class="content-grid">
-                    <div class="card">
+            <section class="section" aria-labelledby="featured-courses-title">
+                <h2 class="section-title" id="featured-courses-title">Corsi in Evidenza</h2>
+                <div class="content-grid" role="list">
+                    <article class="card" role="listitem">
                         <h3 class="card-title">Master in Progettazione Bioclimatica</h3>
                         <p><strong>Durata:</strong> 8 mesi (weekend)</p>
                         <p><strong>Modalità:</strong> Blended (presenza + online)</p>
                         <p><strong>Crediti:</strong> 60 CFP per Architetti e Ingegneri</p>
                         <p>Approfondimento completo delle strategie passive e attive per il comfort ambientale, l'efficienza energetica e l'integrazione con fonti rinnovabili.</p>
                         <p><strong>Moduli principali:</strong></p>
-                        <ul style="margin: var(--space-sm) 0; padding-left: var(--space-md);">
+                        <ul aria-label="Moduli master bioclimatica">
                             <li>Fisica tecnica ambientale avanzata</li>
                             <li>Software di simulazione energetica</li>
                             <li>Progettazione di sistemi HVAC sostenibili</li>
@@ -75,7 +80,7 @@
                         </ul>
                         <p><strong>Prossima edizione:</strong> Marzo 2025</p>
                         <a href="shop.html" class="btn">Iscriviti Ora</a>
-                    </div>
+                    </article>
                     
                     <div class="card">
                         <h3 class="card-title">Corso Materiali Naturali nell'Edilizia</h3>
@@ -151,7 +156,7 @@
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div>
@@ -169,7 +174,16 @@
     <script>
         function toggleMenu() {
             const nav = document.getElementById('mainNav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const isExpanded = nav.classList.contains('active');
+            
             nav.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            
+            // Manage focus
+            if (!isExpanded) {
+                nav.querySelector('.nav-link').focus();
+            }
         }
         
         // Close menu when clicking outside
@@ -179,13 +193,30 @@
             
             if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
                 nav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             }
         });
         
         // Close menu when window is resized to desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth >= 768) {
-                document.getElementById('mainNav').classList.remove('active');
+                const nav = document.getElementById('mainNav');
+                const menuToggle = document.querySelector('.menu-toggle');
+                nav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const nav = document.getElementById('mainNav');
+                const menuToggle = document.querySelector('.menu-toggle');
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.focus();
+                }
             }
         });
     </script>

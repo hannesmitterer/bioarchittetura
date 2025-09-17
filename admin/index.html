@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Bioarchitettura®</title>
+    <meta name="description" content="Sistema di gestione contenuti per Bioarchitettura® - Accesso riservato agli amministratori">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -46,18 +47,41 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #2d5016;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 0 0 4px 4px;
+            font-weight: 600;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+            outline: 2px solid #005fcc;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
+    <!-- Skip navigation link for keyboard users -->
+    <a href="#nc-root" class="skip-link">Vai al CMS</a>
+    
     <!-- Loading screen shown while CMS loads -->
-    <div id="loading-screen" class="loading-screen">
+    <div id="loading-screen" class="loading-screen" role="main" aria-live="polite">
         <h1>Bioarchitettura® CMS</h1>
         <p>Caricamento del sistema di gestione contenuti...</p>
-        <div class="spinner"></div>
+        <div class="spinner" aria-label="Caricamento in corso" role="status"></div>
     </div>
 
     <!-- Netlify CMS will be loaded here -->
-    <div id="nc-root"></div>
+    <div id="nc-root" role="application" aria-label="Sistema di gestione contenuti Netlify CMS"></div>
     
     <!-- Netlify CMS Script -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
@@ -71,6 +95,13 @@
                 const loadingScreen = document.getElementById('loading-screen');
                 if (loadingScreen) {
                     loadingScreen.style.display = 'none';
+                    // Announce to screen readers
+                    const announcement = document.createElement('div');
+                    announcement.setAttribute('aria-live', 'polite');
+                    announcement.textContent = 'Sistema di gestione contenuti caricato con successo';
+                    announcement.style.position = 'absolute';
+                    announcement.style.left = '-10000px';
+                    document.body.appendChild(announcement);
                 }
             }, 2000);
         });
@@ -78,6 +109,27 @@
         // Custom CMS configuration can be added here if needed
         CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap');
         CMS.registerPreviewStyle('/styles.css');
+        
+        // Error handling for CMS loading
+        window.addEventListener('error', function(e) {
+            console.error('CMS Loading Error:', e);
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.innerHTML = `
+                    <h1>Errore di Caricamento</h1>
+                    <p>Impossibile caricare il sistema di gestione contenuti. Riprova più tardi.</p>
+                    <button onclick="location.reload()" style="
+                        background: white; 
+                        color: #2d5016; 
+                        border: none; 
+                        padding: 10px 20px; 
+                        border-radius: 4px; 
+                        cursor: pointer;
+                        font-weight: bold;
+                    ">Ricarica Pagina</button>
+                `;
+            }
+        });
     </script>
 </body>
 </html>
