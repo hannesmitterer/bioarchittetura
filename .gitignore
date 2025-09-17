@@ -1,0 +1,28 @@
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Build tools
+Gemfile.lock
+.bundle/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Optimization scripts (keep in repo for documentation)
+# optimize_images.sh
+# responsive_sizes.sh  
+# update_html.sh
+
+# Temporary files
+*.tmp
+*.bak

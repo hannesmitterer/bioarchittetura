@@ -1,0 +1,94 @@
+/* Image optimization and responsive design styles */
+
+/* Lazy loading styles */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
+/* Responsive images with aspect ratio preservation */
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Logo responsive sizing */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.logo-image {
+    width: auto;
+    height: 40px; /* Base size for header */
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .logo-image {
+        height: 32px;
+    }
+}
+
+/* Picture element styling for WebP fallbacks */
+picture {
+    display: block;
+}
+
+picture img {
+    width: 100%;
+    height: auto;
+}
+
+/* Image gallery responsive grid */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.image-grid .image-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.image-grid .image-container:hover {
+    transform: translateY(-2px);
+}
+
+/* Ensure proper image loading placeholder */
+.image-placeholder {
+    background-color: #f0f0f0;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+/* Performance optimization: prevent layout shift */
+img[width][height] {
+    height: auto;
+}
+
+/* Accessibility: ensure focus states for images with links */
+a img:focus,
+button img:focus {
+    outline: 2px solid var(--color-primary, #2D5A3D);
+    outline-offset: 2px;
+}

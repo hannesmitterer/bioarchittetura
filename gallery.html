@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleria | Bioarchitettura® - Abitare la Terra</title>
+    <meta name="description" content="Galleria fotografica delle edizioni e progetti pubblicati su Bioarchitettura®, la rivista italiana di architettura sostenibile.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/images.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/webp/logo-150x150.webp 150w, assets/images/webp/logo-100x100.webp 100w, assets/images/webp/logo-50x50.webp 50w" sizes="(max-width: 768px) 32px, 40px">
+                        <img src="assets/images/responsive/logo-100x100.jpg" 
+                             srcset="assets/images/responsive/logo-150x150.jpg 150w, assets/images/responsive/logo-100x100.jpg 100w, assets/images/responsive/logo-50x50.jpg 50w" 
+                             sizes="(max-width: 768px) 32px, 40px"
+                             alt="Bioarchitettura® - Logo della rivista italiana di architettura sostenibile"
+                             class="logo-image"
+                             width="100"
+                             height="100">
+                    </picture>
+                    <span>Bioarchitettura®</span>
+                </a>
+                <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+                <nav class="nav" id="mainNav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="rivista.html" class="nav-link">Rivista</a></li>
+                        <li class="nav-item"><a href="master.html" class="nav-link">Master</a></li>
+                        <li class="nav-item"><a href="fondazione.html" class="nav-link">Fondazione</a></li>
+                        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                        <li class="nav-item"><a href="gallery.html" class="nav-link active">Galleria</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h1 class="hero-title">Galleria Fotografica</h1>
+                <p class="hero-subtitle">
+                    Una selezione di immagini dalle nostre edizioni, progetti e ricerche nel campo della bioarchitettura.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Edizioni Recenti</h2>
+                <div class="image-grid">
+                    <div class="image-container">
+                        <picture>
+                            <source type="image/webp" data-src="assets/images/webp/33n001.webp">
+                            <img class="lazy-load" 
+                                 data-src="assets/images/optimized/33n001.jpg"
+                                 alt="Edizione N. 33-001: Progetti di architettura sostenibile" 
+                                 width="400" 
+                                 height="241"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+                    
+                    <div class="image-container">
+                        <picture>
+                            <source type="image/webp" data-src="assets/images/webp/33n002.webp">
+                            <img class="lazy-load" 
+                                 data-src="assets/images/optimized/33n002.jpg"
+                                 alt="Edizione N. 33-002: Materiali naturali in bioarchitettura" 
+                                 width="400" 
+                                 height="248"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+                    
+                    <div class="image-container">
+                        <picture>
+                            <source type="image/webp" data-src="assets/images/webp/33n003.webp">
+                            <img class="lazy-load" 
+                                 data-src="assets/images/optimized/33n003.jpg"
+                                 alt="Edizione N. 33-003: Efficienza energetica e comfort abitativo" 
+                                 width="400" 
+                                 height="261"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+                    
+                    <div class="image-container">
+                        <picture>
+                            <source type="image/webp" data-src="assets/images/webp/44bion005.webp">
+                            <img class="lazy-load" 
+                                 data-src="assets/images/optimized/44bion005.jpg"
+                                 alt="Bioarchitettura N. 44-005: Costruzioni in paglia e legno" 
+                                 width="400" 
+                                 height="540"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+                    
+                    <div class="image-container">
+                        <picture>
+                            <source type="image/webp" data-src="assets/images/webp/44bion010.webp">
+                            <img class="lazy-load" 
+                                 data-src="assets/images/optimized/44bion010.jpg"
+                                 alt="Bioarchitettura N. 44-010: Tecnologie innovative per l'edilizia sostenibile" 
+                                 width="400" 
+                                 height="540"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+                    
+                    <div class="image-container">
+                        <picture>
+                            <source type="image/webp" data-src="assets/images/webp/33n013.webp">
+                            <img class="lazy-load" 
+                                 data-src="assets/images/optimized/33n013.jpg"
+                                 alt="Edizione N. 33-013: Ricerca e sviluppo in architettura verde" 
+                                 width="400" 
+                                 height="590"
+                                 loading="lazy">
+                        </picture>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <div class="card text-center">
+                    <h3 class="card-title">Prestazioni delle Immagini Ottimizzate</h3>
+                    <p>Le immagini in questa galleria utilizzano le seguenti ottimizzazioni:</p>
+                    <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+                        <li><strong>Formato WebP:</strong> Riduzione del 60% delle dimensioni rispetto ai JPEG originali</li>
+                        <li><strong>Compressione ottimizzata:</strong> Qualità visiva preservata con dimensioni ridotte del 48%</li>
+                        <li><strong>Lazy loading:</strong> Le immagini si caricano solo quando diventano visibili</li>
+                        <li><strong>Responsive design:</strong> Dimensioni adattive per tutti i dispositivi</li>
+                        <li><strong>Accessibilità:</strong> Alt text descrittivo e attributi semantici</li>
+                        <li><strong>Fallback automatico:</strong> JPEG per browser che non supportano WebP</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 class="footer-title">Bioarchitettura®</h3>
+                    <p>Rivista di architettura sostenibile dal 1990</p>
+                    <p>Promuoviamo un modo di costruire in armonia con l'ambiente</p>
+                </div>
+                <div>
+                    <p>&copy; 2024 Bioarchitettura®. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/images.js"></script>
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+        
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                document.getElementById('mainNav').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

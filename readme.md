@@ -9,8 +9,9 @@ Questo repository contiene il sito web moderno per Bioarchitettura® - Abitare l
 📚 Sistema di Gestione Contenuti: Jekyll CMS per gestione dinamica di articoli e pubblicazioni
 🛒 E-commerce Integrato: Shop completo per abbonamenti, libri e corsi di formazione
 ♿ Accessibilità WCAG 2.1 AA: Completamente accessibile per tutti gli utenti
-⚡ Prestazioni Ottimizzate: Caricamento veloce e ottimizzazione SEO
+⚡ Prestazioni Ottimizzate: Caricamento veloce e ottimizzazione SEO con immagini WebP
 📱 Esperienza Mobile Eccellente: Design responsive ottimizzato per tutti i dispositivi
+🖼️ Immagini Ottimizzate: Sistema completo di ottimizzazione con WebP, lazy loading e responsive design
 🎯 Obiettivi del Sito
 Preservare il Patrimonio: Digitalizzazione e valorizzazione di 30 anni di pubblicazioni
 Modernizzare l'Esperienza: Interfaccia contemporanea mantenendo autorevolezza accademica

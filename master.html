@@ -6,6 +6,7 @@
     <title>Master | Bioarchitettura® - Abitare la Terra</title>
     <meta name="description" content="Corsi di alta formazione in bioarchitettura e sostenibilità per architetti, ingegneri e progettisti. Master, workshop e seminari specialistici.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/images.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +15,19 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Bioarchitettura®</a>
+                <a href="index.html" class="logo">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/webp/logo-150x150.webp 150w, assets/images/webp/logo-100x100.webp 100w, assets/images/webp/logo-50x50.webp 50w" sizes="(max-width: 768px) 32px, 40px">
+                        <img src="assets/images/responsive/logo-100x100.jpg" 
+                             srcset="assets/images/responsive/logo-150x150.jpg 150w, assets/images/responsive/logo-100x100.jpg 100w, assets/images/responsive/logo-50x50.jpg 50w" 
+                             sizes="(max-width: 768px) 32px, 40px"
+                             alt="Bioarchitettura® - Logo della rivista italiana di architettura sostenibile"
+                             class="logo-image"
+                             width="100"
+                             height="100">
+                    </picture>
+                    <span>Bioarchitettura®</span>
+                </a>
                 <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
                 <nav class="nav" id="mainNav">
                     <ul class="nav-list">
@@ -189,5 +202,6 @@
             }
         });
     </script>
+    <script src="assets/js/images.js"></script>
 </body>
 </html>
