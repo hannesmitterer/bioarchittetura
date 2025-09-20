@@ -1,0 +1,21 @@
+# Jekyll build artifacts
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler artifacts
+vendor/
+.bundle/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor artifacts
+*.swp
+*.swo
+*~
+
+# Logs
+*.log

@@ -196,8 +196,17 @@ Aggiornamenti e novità settoriali:
 
 ### Workflow e CI/CD
 - **Jekyll Deployment**: Automatico su push al branch main via GitHub Pages
+- **Auto Commit**: Workflow automatico giornaliero per commit di modifiche (ore 2:00 UTC)
 - **Runtime Logs**: Sistema per prevenire warning upload-artifact (vedi [.github/RUNTIME_LOGS_FIX.md](.github/RUNTIME_LOGS_FIX.md))
 - **Script Utilità**: Disponibili in `.github/scripts/` per manutenzione automatizzata
+
+#### Auto Commit Workflow
+Il sistema di auto-commit monitora automaticamente il repository e committa eventuali modifiche:
+- **Schedulazione**: Esecuzione giornaliera alle 2:00 UTC (orario off-peak)
+- **Sicurezza**: Verifica la presenza di modifiche prima del commit per evitare commit vuoti
+- **Attivazione manuale**: Possibile attivazione manuale tramite GitHub Actions
+- **Compatibilità**: Non interferisce con il deployment Jekyll o altri workflow
+- **Messaggi**: Commit automatici con timestamp e descrizione chiara
 
 ## 📞 Supporto e Contatti
 

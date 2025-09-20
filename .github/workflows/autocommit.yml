@@ -1,0 +1,64 @@
+name: Auto Commit Site Updates
+
+on:
+  # Run daily at 2 AM UTC (during off-peak hours)
+  schedule:
+    - cron: '0 2 * * *'
+  # Allow manual triggering
+  workflow_dispatch:
+
+# Set permissions to allow the workflow to commit changes
+permissions:
+  contents: write
+  pages: read
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history to properly detect changes
+          fetch-depth: 0
+          # Use GitHub token for authentication
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Actions Auto Commit"
+          
+      - name: Check for changes
+        id: verify-changes
+        run: |
+          # Check if there are any unstaged changes in the working directory
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Changes detected in working directory"
+            git status --porcelain
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No changes detected in working directory"
+          fi
+          
+      - name: Commit and push changes
+        if: steps.verify-changes.outputs.changes == 'true'
+        run: |
+          # Add all changes
+          git add .
+          
+          # Create commit with descriptive message and timestamp
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit -m "Auto-commit: update site content ($TIMESTAMP)"
+          
+          # Push changes to the repository
+          git push origin main
+          
+          echo "✅ Changes successfully committed and pushed"
+          
+      - name: No changes to commit
+        if: steps.verify-changes.outputs.changes == 'false'
+        run: |
+          echo "ℹ️ No changes to commit. Repository is up to date."
