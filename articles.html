@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles | Bioarchitettura® - Abitare la Terra</title>
+    <meta name="description" content="Articoli in evidenza su sostenibilità, architettura ecologica e Laudato si'. Le migliori ricerche e approfondimenti nell'architettura sostenibile.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Bioarchitettura®</a>
+                <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+                <nav class="nav" id="mainNav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="magazine.html" class="nav-link">Magazine</a></li>
+                        <li class="nav-item"><a href="articles.html" class="nav-link active">Articles</a></li>
+                        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                        <li class="nav-item"><a href="fondazione.html" class="nav-link">Fondazione</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h1 class="hero-title">Articoli e Approfondimenti</h1>
+                <p class="hero-subtitle">
+                    Scopri gli articoli più significativi su sostenibilità, architettura ecologica 
+                    e i principi della Laudato si' applicati all'edilizia contemporanea.
+                </p>
+            </section>
+
+            <!-- Search and Filter Section -->
+            <section class="section">
+                <div class="search-filter-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Cerca negli articoli..." aria-label="Cerca articoli">
+                        <button onclick="searchArticles()" aria-label="Avvia ricerca">🔍</button>
+                    </div>
+                    <div class="filter-options">
+                        <select id="categoryFilter" onchange="filterArticles()" aria-label="Filtra per categoria">
+                            <option value="">Tutte le categorie</option>
+                            <option value="sostenibilita">Sostenibilità</option>
+                            <option value="materiali">Materiali Naturali</option>
+                            <option value="energia">Efficienza Energetica</option>
+                            <option value="progettazione">Progettazione Bioclimatica</option>
+                            <option value="laudato-si">Laudato si'</option>
+                            <option value="innovazione">Innovazione Tecnologica</option>
+                            <option value="restauro">Restauro Sostenibile</option>
+                        </select>
+                        <select id="authorFilter" onchange="filterArticles()" aria-label="Filtra per autore">
+                            <option value="">Tutti gli autori</option>
+                            <option value="sasso">Ugo Sasso</option>
+                            <option value="mitterer">Wittfrida Mitterer</option>
+                            <option value="altri">Altri autori</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Articles -->
+            <section class="section">
+                <h2 class="section-title">Articoli in Evidenza</h2>
+                <div class="featured-articles">
+                    <article class="featured-article" data-category="laudato-si" data-author="sasso">
+                        <div class="article-content">
+                            <span class="article-category">Laudato si'</span>
+                            <h3 class="article-title">Architettura e Cura del Creato: I Principi della Laudato si'</h3>
+                            <p class="article-excerpt">
+                                Un'analisi approfondita di come i principi dell'enciclica di Papa Francesco possano guidare 
+                                una nuova architettura rispettosa dell'ambiente e del benessere umano, integrando spiritualità 
+                                e sostenibilità nella progettazione contemporanea.
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-author">Di Ugo Sasso</span>
+                                <span class="article-date">Marzo 2024</span>
+                                <span class="article-reading-time">Lettura: 12 min</span>
+                            </div>
+                            <a href="#" class="btn-small" onclick="readArticle('laudato-si-architettura')">Leggi Articolo</a>
+                        </div>
+                        <div class="article-image">
+                            <img src="LogoBIO_250x250.jpg" alt="Architettura sostenibile e Laudato si'" class="article-thumbnail">
+                        </div>
+                    </article>
+
+                    <article class="featured-article" data-category="sostenibilita" data-author="mitterer">
+                        <div class="article-content">
+                            <span class="article-category">Sostenibilità</span>
+                            <h3 class="article-title">Bioarchitettura e Cambiamenti Climatici: Strategie Adattive</h3>
+                            <p class="article-excerpt">
+                                Come l'architettura sostenibile può rispondere efficacemente alle sfide dei cambiamenti climatici, 
+                                attraverso design adattivo, materiali resilienti e strategie di mitigazione integrate nel 
+                                processo progettuale.
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-author">Di Wittfrida Mitterer</span>
+                                <span class="article-date">Febbraio 2024</span>
+                                <span class="article-reading-time">Lettura: 15 min</span>
+                            </div>
+                            <a href="#" class="btn-small" onclick="readArticle('climate-adaptive-architecture')">Leggi Articolo</a>
+                        </div>
+                        <div class="article-image">
+                            <img src="LogoBIO_250x250.jpg" alt="Architettura adattiva ai cambiamenti climatici" class="article-thumbnail">
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Article Categories -->
+            <section class="section">
+                <h2 class="section-title">Esplora per Argomento</h2>
+                <div class="category-grid">
+                    <div class="category-card" onclick="filterByCategory('sostenibilita')">
+                        <div class="category-icon">🌱</div>
+                        <h3>Sostenibilità</h3>
+                        <p>Principi e pratiche per un'architettura ecologica</p>
+                        <span class="article-count">342 articoli</span>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('materiali')">
+                        <div class="category-icon">🧱</div>
+                        <h3>Materiali Naturali</h3>
+                        <p>Legno, terra, paglia e materiali bio-based</p>
+                        <span class="article-count">267 articoli</span>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('energia')">
+                        <div class="category-icon">⚡</div>
+                        <h3>Efficienza Energetica</h3>
+                        <p>Tecnologie e strategie per l'energia pulita</p>
+                        <span class="article-count">189 articoli</span>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('progettazione')">
+                        <div class="category-icon">📐</div>
+                        <h3>Progettazione Bioclimatica</h3>
+                        <p>Design in armonia con il clima e l'ambiente</p>
+                        <span class="article-count">215 articoli</span>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('laudato-si')">
+                        <div class="category-icon">🕊️</div>
+                        <h3>Laudato si'</h3>
+                        <p>Architettura e cura del creato</p>
+                        <span class="article-count">67 articoli</span>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('innovazione')">
+                        <div class="category-icon">🔬</div>
+                        <h3>Innovazione</h3>
+                        <p>Tecnologie emergenti e ricerca avanzata</p>
+                        <span class="article-count">156 articoli</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Articles Grid -->
+            <section class="section">
+                <h2 class="section-title">Articoli Recenti</h2>
+                <div id="articlesGrid" class="articles-grid">
+                    <article class="article-card" data-category="materiali" data-author="altri">
+                        <div class="article-image">
+                            <img src="LogoBIO_250x250.jpg" alt="Canapa in edilizia" class="article-thumbnail">
+                            <span class="article-category-tag">Materiali</span>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Canapa e Bamboo: I Materiali del Futuro</h3>
+                            <p class="article-excerpt">
+                                Analisi delle proprietà strutturali e termiche di canapa e bamboo per applicazioni 
+                                nell'edilizia sostenibile contemporanea.
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-author">Marco Rossi</span>
+                                <span class="article-date">Gen 2024</span>
+                            </div>
+                            <a href="#" class="btn-small" onclick="readArticle('canapa-bamboo-futuro')">Leggi</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-category="energia" data-author="altri">
+                        <div class="article-image">
+                            <img src="LogoBIO_250x250.jpg" alt="Pompe di calore geotermiche" class="article-thumbnail">
+                            <span class="article-category-tag">Energia</span>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Geotermia Urbana: Soluzioni Innovative</h3>
+                            <p class="article-excerpt">
+                                Come le pompe di calore geotermiche stanno rivoluzionando l'efficienza energetica 
+                                negli edifici urbani.
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-author">Laura Bianchi</span>
+                                <span class="article-date">Gen 2024</span>
+                            </div>
+                            <a href="#" class="btn-small" onclick="readArticle('geotermia-urbana')">Leggi</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-category="progettazione" data-author="altri">
+                        <div class="article-image">
+                            <img src="LogoBIO_250x250.jpg" alt="Ventilazione naturale" class="article-thumbnail">
+                            <span class="article-category-tag">Progettazione</span>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Ventilazione Naturale negli Edifici Moderni</h3>
+                            <p class="article-excerpt">
+                                Strategie progettuali per massimizzare il comfort termico attraverso la ventilazione 
+                                naturale in architetture contemporanee.
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-author">Giuseppe Verdi</span>
+                                <span class="article-date">Dic 2023</span>
+                            </div>
+                            <a href="#" class="btn-small" onclick="readArticle('ventilazione-naturale')">Leggi</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-category="restauro" data-author="altri">
+                        <div class="article-image">
+                            <img src="LogoBIO_250x250.jpg" alt="Restauro sostenibile" class="article-thumbnail">
+                            <span class="article-category-tag">Restauro</span>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Consolidamento Antisismico Eco-compatibile</h3>
+                            <p class="article-excerpt">
+                                Tecniche innovative per il consolidamento strutturale del patrimonio storico 
+                                con materiali sostenibili.
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-author">Anna Neri</span>
+                                <span class="article-date">Dic 2023</span>
+                            </div>
+                            <a href="#" class="btn-small" onclick="readArticle('consolidamento-antisismico')">Leggi</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-category="innovazione" data-author="altri">
+                        <div class="article-image">
+                            <img src="LogoBIO_250x250.jpg" alt="Stampa 3D sostenibile" class="article-thumbnail">
+                            <span class="article-category-tag">Innovazione</span>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Stampa 3D con Materiali Naturali</h3>
+                            <p class="article-excerpt">
+                                Le potenzialità della stampa 3D applicata ai materiali bio-based per 
+                                l'architettura sostenibile.
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-author">Paolo Gialli</span>
+                                <span class="article-date">Nov 2023</span>
+                            </div>
+                            <a href="#" class="btn-small" onclick="readArticle('stampa-3d-naturali')">Leggi</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-category="laudato-si" data-author="sasso">
+                        <div class="article-image">
+                            <img src="LogoBIO_250x250.jpg" alt="Casa comune" class="article-thumbnail">
+                            <span class="article-category-tag">Laudato si'</span>
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">La Casa Comune: Architettura per la Comunità</h3>
+                            <p class="article-excerpt">
+                                Riflessioni sui spazi abitativi come espressione della cura per la casa comune 
+                                secondo i principi della Laudato si'.
+                            </p>
+                            <div class="article-meta">
+                                <span class="article-author">Ugo Sasso</span>
+                                <span class="article-date">Nov 2023</span>
+                            </div>
+                            <a href="#" class="btn-small" onclick="readArticle('casa-comune-comunita')">Leggi</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center">
+                    <button id="loadMoreBtn" class="btn-secondary" onclick="loadMoreArticles()">Carica Altri Articoli</button>
+                </div>
+            </section>
+
+            <!-- Newsletter Section -->
+            <section class="section text-center">
+                <h2 class="section-title">Resta Aggiornato</h2>
+                <p class="mb-lg">Ricevi i migliori articoli direttamente nella tua email</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="La tua email" id="newsletterEmail" aria-label="Email per newsletter">
+                    <button class="btn" onclick="subscribeNewsletter()">Iscriviti</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 class="footer-title">Bioarchitettura®</h3>
+                    <p>Rivista di architettura sostenibile dal 1992</p>
+                    <p>Promuoviamo un modo di costruire in armonia con l'ambiente</p>
+                </div>
+                <div>
+                    <p>&copy; 2024 Bioarchitettura®. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+        
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.innerWidth > 768) {
+                nav.classList.remove('active');
+            }
+        });
+
+        // Articles search and filter functionality
+        function searchArticles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const articles = document.querySelectorAll('.article-card, .featured-article');
+            
+            articles.forEach(article => {
+                const title = article.querySelector('.article-title').textContent.toLowerCase();
+                const excerpt = article.querySelector('.article-excerpt').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        function filterArticles() {
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const authorFilter = document.getElementById('authorFilter').value;
+            const articles = document.querySelectorAll('.article-card, .featured-article');
+            
+            articles.forEach(article => {
+                const articleCategory = article.getAttribute('data-category');
+                const articleAuthor = article.getAttribute('data-author');
+                
+                let showArticle = true;
+                
+                if (categoryFilter && articleCategory !== categoryFilter) {
+                    showArticle = false;
+                }
+                
+                if (authorFilter && articleAuthor !== authorFilter) {
+                    showArticle = false;
+                }
+                
+                article.style.display = showArticle ? 'block' : 'none';
+            });
+        }
+
+        function filterByCategory(category) {
+            document.getElementById('categoryFilter').value = category;
+            filterArticles();
+        }
+
+        function readArticle(articleId) {
+            // In a real implementation, this would navigate to the full article
+            alert(`Apertura articolo: ${articleId} - Funzionalità in sviluppo`);
+        }
+
+        function loadMoreArticles() {
+            // In a real implementation, this would load more articles via AJAX
+            alert('Caricamento di altri articoli - Funzionalità in sviluppo');
+        }
+
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email && email.includes('@')) {
+                alert(`Iscrizione completata per: ${email}`);
+                document.getElementById('newsletterEmail').value = '';
+            } else {
+                alert('Inserisci un indirizzo email valido');
+            }
+        }
+
+        // Allow Enter key in search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchArticles();
+            }
+        });
+    </script>
+</body>
+</html>

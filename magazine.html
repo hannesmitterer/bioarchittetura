@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine | Bioarchitettura® - Abitare la Terra</title>
+    <meta name="description" content="Accedi all'archivio completo delle edizioni della rivista Bioarchitettura® - Abitare la Terra. Oltre 30 anni di eccellenza nell'architettura sostenibile italiana.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Bioarchitettura®</a>
+                <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+                <nav class="nav" id="mainNav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="magazine.html" class="nav-link active">Magazine</a></li>
+                        <li class="nav-item"><a href="articles.html" class="nav-link">Articles</a></li>
+                        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                        <li class="nav-item"><a href="fondazione.html" class="nav-link">Fondazione</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h1 class="hero-title">Archivio Magazine</h1>
+                <p class="hero-subtitle">
+                    Esplora l'archivio completo della rivista Bioarchitettura® - Abitare la Terra. 
+                    Oltre 150 edizioni dal 1992 con i migliori articoli sull'architettura sostenibile.
+                </p>
+            </section>
+
+            <!-- Search and Filter Section -->
+            <section class="section">
+                <div class="search-filter-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Cerca nelle edizioni..." aria-label="Cerca edizioni">
+                        <button onclick="searchMagazines()" aria-label="Avvia ricerca">🔍</button>
+                    </div>
+                    <div class="filter-options">
+                        <select id="yearFilter" onchange="filterMagazines()" aria-label="Filtra per anno">
+                            <option value="">Tutti gli anni</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <!-- Add more years as needed -->
+                        </select>
+                        <select id="topicFilter" onchange="filterMagazines()" aria-label="Filtra per argomento">
+                            <option value="">Tutti gli argomenti</option>
+                            <option value="materiali">Materiali Naturali</option>
+                            <option value="energia">Efficienza Energetica</option>
+                            <option value="progettazione">Progettazione Bioclimatica</option>
+                            <option value="restauro">Restauro Sostenibile</option>
+                            <option value="tecnologie">Tecnologie Innovative</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest Issue Highlight -->
+            <section class="section">
+                <h2 class="section-title">Ultima Edizione</h2>
+                <div class="featured-issue">
+                    <div class="issue-cover">
+                        <img src="LogoBIO_250x250.jpg" alt="Copertina N. 152-153" class="cover-image">
+                    </div>
+                    <div class="issue-content">
+                        <h3 class="issue-title">N. 152-153 | 2025</h3>
+                        <h4 class="issue-theme">Rigenerazione Urbana e Architettura Vernacolare</h4>
+                        <p class="issue-description">
+                            Un'analisi approfondita delle strategie contemporanee di rigenerazione urbana che valorizzano 
+                            il patrimonio architettonico tradizionale, integrando sostenibilità ambientale e identità culturale.
+                        </p>
+                        <div class="issue-articles">
+                            <h5>Articoli principali:</h5>
+                            <ul>
+                                <li>Restauro sostenibile di borghi storici in Abruzzo</li>
+                                <li>Tecniche costruttive vernatolari e comfort bioclimatico</li>
+                                <li>Materiali locali per la rigenerazione architettonica</li>
+                                <li>Case study: Il recupero del centro storico di Civita di Bagnoregio</li>
+                            </ul>
+                        </div>
+                        <div class="issue-actions">
+                            <a href="shop.html" class="btn">Acquista Edizione</a>
+                            <a href="#" class="btn-secondary" onclick="previewIssue('152-153')">Anteprima PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Magazine Archive Grid -->
+            <section class="section">
+                <h2 class="section-title">Archivio Completo</h2>
+                <div id="magazineGrid" class="magazine-grid">
+                    <!-- Recent Issues -->
+                    <div class="magazine-item" data-year="2024" data-topic="tecnologie">
+                        <div class="magazine-cover">
+                            <img src="LogoBIO_250x250.jpg" alt="Copertina N. 150-151" class="cover-thumbnail">
+                            <div class="magazine-overlay">
+                                <h4>N. 150-151</h4>
+                                <p>2024</p>
+                            </div>
+                        </div>
+                        <div class="magazine-info">
+                            <h3>Smart Building e IoT Sostenibile</h3>
+                            <p>Tecnologie intelligenti per l'efficienza energetica e il comfort abitativo.</p>
+                            <div class="magazine-actions">
+                                <a href="shop.html" class="btn-small">Acquista</a>
+                                <a href="#" class="btn-small-secondary" onclick="previewIssue('150-151')">Anteprima</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="magazine-item" data-year="2024" data-topic="materiali">
+                        <div class="magazine-cover">
+                            <img src="LogoBIO_250x250.jpg" alt="Copertina N. 148-149" class="cover-thumbnail">
+                            <div class="magazine-overlay">
+                                <h4>N. 148-149</h4>
+                                <p>2024</p>
+                            </div>
+                        </div>
+                        <div class="magazine-info">
+                            <h3>Canapa e Bamboo in Edilizia</h3>
+                            <p>Materiali bio-based per costruzioni a zero emissioni.</p>
+                            <div class="magazine-actions">
+                                <a href="shop.html" class="btn-small">Acquista</a>
+                                <a href="#" class="btn-small-secondary" onclick="previewIssue('148-149')">Anteprima</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="magazine-item" data-year="2023" data-topic="progettazione">
+                        <div class="magazine-cover">
+                            <img src="LogoBIO_250x250.jpg" alt="Copertina N. 146-147" class="cover-thumbnail">
+                            <div class="magazine-overlay">
+                                <h4>N. 146-147</h4>
+                                <p>2023</p>
+                            </div>
+                        </div>
+                        <div class="magazine-info">
+                            <h3>Progettazione Bioclimatica Avanzata</h3>
+                            <p>Strategie passive per il massimo comfort con minimo impatto.</p>
+                            <div class="magazine-actions">
+                                <a href="shop.html" class="btn-small">Acquista</a>
+                                <a href="#" class="btn-small-secondary" onclick="previewIssue('146-147')">Anteprima</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="magazine-item" data-year="2023" data-topic="energia">
+                        <div class="magazine-cover">
+                            <img src="LogoBIO_250x250.jpg" alt="Copertina N. 144-145" class="cover-thumbnail">
+                            <div class="magazine-overlay">
+                                <h4>N. 144-145</h4>
+                                <p>2023</p>
+                            </div>
+                        </div>
+                        <div class="magazine-info">
+                            <h3>Comunità Energetiche Rinnovabili</h3>
+                            <p>Autosufficienza energetica su scala locale e urbana.</p>
+                            <div class="magazine-actions">
+                                <a href="shop.html" class="btn-small">Acquista</a>
+                                <a href="#" class="btn-small-secondary" onclick="previewIssue('144-145')">Anteprima</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="magazine-item" data-year="2022" data-topic="restauro">
+                        <div class="magazine-cover">
+                            <img src="LogoBIO_250x250.jpg" alt="Copertina N. 142-143" class="cover-thumbnail">
+                            <div class="magazine-overlay">
+                                <h4>N. 142-143</h4>
+                                <p>2022</p>
+                            </div>
+                        </div>
+                        <div class="magazine-info">
+                            <h3>Sismica e Sostenibilità</h3>
+                            <p>Tecniche di consolidamento eco-compatibili per il patrimonio storico.</p>
+                            <div class="magazine-actions">
+                                <a href="shop.html" class="btn-small">Acquista</a>
+                                <a href="#" class="btn-small-secondary" onclick="previewIssue('142-143')">Anteprima</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="magazine-item" data-year="2022" data-topic="materiali">
+                        <div class="magazine-cover">
+                            <img src="LogoBIO_250x250.jpg" alt="Copertina N. 140-141" class="cover-thumbnail">
+                            <div class="magazine-overlay">
+                                <h4>N. 140-141</h4>
+                                <p>2022</p>
+                            </div>
+                        </div>
+                        <div class="magazine-info">
+                            <h3>Terra Cruda Contemporanea</h3>
+                            <p>Innovazioni nelle tecniche costruttive con terra naturale.</p>
+                            <div class="magazine-actions">
+                                <a href="shop.html" class="btn-small">Acquista</a>
+                                <a href="#" class="btn-small-secondary" onclick="previewIssue('140-141')">Anteprima</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center">
+                    <button id="loadMoreBtn" class="btn-secondary" onclick="loadMoreIssues()">Carica Altri Numeri</button>
+                </div>
+            </section>
+
+            <!-- Subscription Section -->
+            <section class="section text-center">
+                <h2 class="section-title">Non Perdere Nessuna Edizione</h2>
+                <p class="mb-lg">Abbonati e ricevi automaticamente tutte le edizioni della rivista</p>
+                <div class="btn-group">
+                    <a href="shop.html" class="btn">Abbonati Ora</a>
+                    <a href="articles.html" class="btn-secondary">Leggi Articoli Online</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3 class="footer-title">Bioarchitettura®</h3>
+                    <p>Rivista di architettura sostenibile dal 1992</p>
+                    <p>Promuoviamo un modo di costruire in armonia con l'ambiente</p>
+                </div>
+                <div>
+                    <p>&copy; 2024 Bioarchitettura®. Tutti i diritti riservati.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+        
+        // Close menu when window is resized to desktop
+        window.addEventListener('resize', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.innerWidth > 768) {
+                nav.classList.remove('active');
+            }
+        });
+
+        // Magazine search and filter functionality
+        function searchMagazines() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.magazine-item');
+            
+            items.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function filterMagazines() {
+            const yearFilter = document.getElementById('yearFilter').value;
+            const topicFilter = document.getElementById('topicFilter').value;
+            const items = document.querySelectorAll('.magazine-item');
+            
+            items.forEach(item => {
+                const itemYear = item.getAttribute('data-year');
+                const itemTopic = item.getAttribute('data-topic');
+                
+                let showItem = true;
+                
+                if (yearFilter && itemYear !== yearFilter) {
+                    showItem = false;
+                }
+                
+                if (topicFilter && itemTopic !== topicFilter) {
+                    showItem = false;
+                }
+                
+                item.style.display = showItem ? 'block' : 'none';
+            });
+        }
+
+        function previewIssue(issueNumber) {
+            // In a real implementation, this would open a PDF viewer or preview modal
+            alert(`Anteprima del numero ${issueNumber} - Funzionalità in sviluppo`);
+        }
+
+        function loadMoreIssues() {
+            // In a real implementation, this would load more issues via AJAX
+            alert('Caricamento di altre edizioni - Funzionalità in sviluppo');
+        }
+
+        // Allow Enter key in search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchMagazines();
+            }
+        });
+    </script>
+</body>
+</html>
