@@ -1,0 +1,201 @@
+backend:
+  name: git-gateway
+  branch: main
+  
+# Media and public folder configuration
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+# Collections configuration for all pages
+collections:
+  - name: "pages"
+    label: "Pagine"
+    files:
+      # Home Page
+      - name: "home"
+        label: "Home"
+        file: "index.html"
+        fields:
+          - {label: "Titolo Pagina", name: "title", widget: "string", default: "Home | Bioarchitettura® - Abitare la Terra"}
+          - {label: "Meta Descrizione", name: "description", widget: "text", default: "Bioarchitettura® è la rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica."}
+          - {label: "Titolo Hero", name: "hero_title", widget: "string", default: "Abitare la Terra"}
+          - {label: "Sottotitolo Hero", name: "hero_subtitle", widget: "text", default: "La rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica dal 1990."}
+          - label: "Sezioni Principali"
+            name: "main_sections"
+            widget: "list"
+            fields:
+              - {label: "Icona", name: "icon", widget: "string"}
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+              - {label: "Link", name: "link", widget: "string"}
+              - {label: "Testo Pulsante", name: "button_text", widget: "string"}
+          - label: "Sezione Valori"
+            name: "values_section"
+            widget: "list"
+            fields:
+              - {label: "Icona", name: "icon", widget: "string"}
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+
+      # Rivista Page
+      - name: "rivista"
+        label: "Rivista"
+        file: "rivista.html"
+        fields:
+          - {label: "Titolo Pagina", name: "title", widget: "string", default: "Rivista | Bioarchitettura® - Abitare la Terra"}
+          - {label: "Meta Descrizione", name: "description", widget: "text"}
+          - {label: "Titolo Hero", name: "hero_title", widget: "string", default: "Rivista Bioarchitettura®"}
+          - {label: "Sottotitolo Hero", name: "hero_subtitle", widget: "text"}
+          - label: "Missione Editoriale"
+            name: "editorial_mission"
+            widget: "list"
+            fields:
+              - {label: "Icona", name: "icon", widget: "string"}
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+          - label: "Temi di Approfondimento"
+            name: "topics"
+            widget: "list"
+            fields:
+              - {label: "Icona", name: "icon", widget: "string"}
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+          - label: "Ultima Edizione"
+            name: "latest_issue"
+            widget: "object"
+            fields:
+              - {label: "Numero", name: "number", widget: "string"}
+              - {label: "Periodo", name: "period", widget: "string"}
+              - {label: "Tema Speciale", name: "special_theme", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+              - {label: "Articoli Principali", name: "main_articles", widget: "list", field: {label: "Articolo", name: "article", widget: "string"}}
+
+      # Master Page
+      - name: "master"
+        label: "Master"
+        file: "master.html"
+        fields:
+          - {label: "Titolo Pagina", name: "title", widget: "string", default: "Master | Bioarchitettura® - Abitare la Terra"}
+          - {label: "Meta Descrizione", name: "description", widget: "text"}
+          - {label: "Titolo Hero", name: "hero_title", widget: "string", default: "Master e Formazione"}
+          - {label: "Sottotitolo Hero", name: "hero_subtitle", widget: "text"}
+          - label: "Programmi Formativi"
+            name: "training_programs"
+            widget: "list"
+            fields:
+              - {label: "Icona", name: "icon", widget: "string"}
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+          - label: "Corsi in Evidenza"
+            name: "featured_courses"
+            widget: "list"
+            fields:
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Durata", name: "duration", widget: "string"}
+              - {label: "Modalità", name: "mode", widget: "string"}
+              - {label: "Crediti", name: "credits", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+              - {label: "Dettagli", name: "details", widget: "list", field: {label: "Dettaglio", name: "detail", widget: "string"}}
+              - {label: "Prossima Edizione", name: "next_edition", widget: "string"}
+          - label: "Vantaggi Formativi"
+            name: "training_benefits"
+            widget: "list"
+            fields:
+              - {label: "Icona", name: "icon", widget: "string"}
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+
+      # Fondazione Page
+      - name: "fondazione"
+        label: "Fondazione"
+        file: "fondazione.html"
+        fields:
+          - {label: "Titolo Pagina", name: "title", widget: "string", default: "Fondazione | Bioarchitettura® - Abitare la Terra"}
+          - {label: "Meta Descrizione", name: "description", widget: "text"}
+          - {label: "Titolo Hero", name: "hero_title", widget: "string", default: "Fondazione Bioarchitettura®"}
+          - {label: "Sottotitolo Hero", name: "hero_subtitle", widget: "text"}
+          - {label: "Testo Missione", name: "mission_text", widget: "text"}
+          - label: "Aree di Ricerca"
+            name: "research_areas"
+            widget: "list"
+            fields:
+              - {label: "Icona", name: "icon", widget: "string"}
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+          - label: "Progetti in Corso"
+            name: "current_projects"
+            widget: "list"
+            fields:
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Partner", name: "partners", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+              - {label: "Budget", name: "budget", widget: "string"}
+              - {label: "Durata", name: "duration", widget: "string"}
+          - label: "Statistiche Ricerca"
+            name: "research_stats"
+            widget: "object"
+            fields:
+              - {label: "Pubblicazioni", name: "publications", widget: "number"}
+              - {label: "Brevetti", name: "patents", widget: "number"}
+              - {label: "Progetti Completati", name: "completed_projects", widget: "number"}
+              - {label: "Finanziamenti", name: "funding", widget: "string"}
+              - {label: "Spin-off", name: "spinoffs", widget: "number"}
+
+      # Shop Page
+      - name: "shop"
+        label: "Shop"
+        file: "shop.html"
+        fields:
+          - {label: "Titolo Pagina", name: "title", widget: "string", default: "Shop | Bioarchitettura® - Abitare la Terra"}
+          - {label: "Meta Descrizione", name: "description", widget: "text"}
+          - {label: "Titolo Hero", name: "hero_title", widget: "string", default: "Shop Bioarchitettura®"}
+          - {label: "Sottotitolo Hero", name: "hero_subtitle", widget: "text"}
+          - label: "Abbonamenti"
+            name: "subscriptions"
+            widget: "list"
+            fields:
+              - {label: "Icona", name: "icon", widget: "string"}
+              - {label: "Nome", name: "name", widget: "string"}
+              - {label: "Prezzo", name: "price", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+              - {label: "Caratteristiche", name: "features", widget: "list", field: {label: "Caratteristica", name: "feature", widget: "string"}}
+              - {label: "Testo Pulsante", name: "button_text", widget: "string"}
+          - label: "Corsi"
+            name: "courses"
+            widget: "list"
+            fields:
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Prezzo", name: "price", widget: "string"}
+              - {label: "Note Prezzo", name: "price_note", widget: "string", required: false}
+              - {label: "Descrizione", name: "description", widget: "text"}
+              - {label: "Caratteristiche", name: "features", widget: "list", field: {label: "Caratteristica", name: "feature", widget: "string"}}
+              - {label: "Prossima Edizione", name: "next_edition", widget: "string"}
+          - label: "Pubblicazioni"
+            name: "publications"
+            widget: "list"
+            fields:
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Prezzo", name: "price", widget: "string"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+              - {label: "Caratteristiche", name: "features", widget: "list", field: {label: "Caratteristica", name: "feature", widget: "string"}}
+          - label: "Contatti Assistenza"
+            name: "support_contacts"
+            widget: "object"
+            fields:
+              - {label: "Email", name: "email", widget: "string"}
+              - {label: "Telefono", name: "phone", widget: "string"}
+              - {label: "Orari", name: "hours", widget: "string"}
+
+# Editor configuration
+editor:
+  preview: true
+  frame: true
+  
+# Site URL for preview
+site_url: "https://bioarchittetura.netlify.app"
+
+# Display URL in the CMS
+display_url: "https://bioarchittetura.netlify.app"
+
+# Logo for the CMS
+logo_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMyZDUwMTYiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSI4IiB5PSI4Ij4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+Cjwvc3ZnPgo="
