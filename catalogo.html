@@ -1,0 +1,276 @@
+---
+layout: default
+title: "TUTTE LE EDIZIONI DELLA RIVISTA BIOARCHITETTURA®"
+description: "Catalogo completo di tutte le edizioni della rivista Bioarchitettura® dal 1990. Accesso digitale per il Dipartimento di Architettura dell'Università di Bologna."
+---
+
+<section class="hero catalog-hero">
+    <h1 class="hero-title">TUTTE LE EDIZIONI DELLA RIVISTA BIOARCHITETTURA®</h1>
+    <p class="hero-subtitle">
+        Esplora oltre 30 anni di innovazione nell'architettura sostenibile.
+        <strong>Accesso speciale per il Dipartimento di Architettura dell'Università di Bologna.</strong>
+    </p>
+    <div class="catalog-stats">
+        <div class="stat">
+            <span class="stat-number">{{ site.rivista.size }}</span>
+            <span class="stat-label">Edizioni Pubblicate</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">30+</span>
+            <span class="stat-label">Anni di Pubblicazione</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">1.699</span>
+            <span class="stat-label">Articoli Tecnici</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">1.254</span>
+            <span class="stat-label">Autori Esperti</span>
+        </div>
+    </div>
+</section>
+
+<section class="section catalog-filters">
+    <div class="filter-bar">
+        <h2>Filtra per Anno</h2>
+        <div class="year-filters" id="yearFilters">
+            <button class="filter-btn active" data-year="all">Tutti</button>
+            {% assign years = site.rivista | map: 'year' | uniq | sort | reverse %}
+            {% for year in years %}
+                <button class="filter-btn" data-year="{{ year }}">{{ year }}</button>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="search-bar">
+        <input type="search" id="catalogSearch" placeholder="Cerca per titolo, argomento o autore..." class="search-input">
+        <button class="search-btn" onclick="performSearch()">🔍</button>
+    </div>
+</section>
+
+<section class="section catalog-grid-section">
+    <div class="catalog-controls">
+        <div class="view-options">
+            <button class="view-btn active" data-view="grid" onclick="setView('grid')">📱 Griglia</button>
+            <button class="view-btn" data-view="list" onclick="setView('list')">📋 Lista</button>
+        </div>
+        
+        <div class="sort-options">
+            <label for="sortSelect">Ordina per:</label>
+            <select id="sortSelect" onchange="sortCatalog(this.value)">
+                <option value="newest">Più Recenti</option>
+                <option value="oldest">Più Datate</option>
+                <option value="title">Titolo A-Z</option>
+                <option value="featured">In Evidenza</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="catalog-grid" id="catalogGrid">
+        {% assign sorted_editions = site.rivista | sort: 'year' | reverse %}
+        {% for edition in sorted_editions %}
+            <article class="edition-card" data-year="{{ edition.year }}" data-title="{{ edition.title | downcase }}" data-tags="{{ edition.tags | join: ' ' | downcase }}" data-authors="{{ edition.authors | join: ' ' | downcase }}">
+                <div class="edition-card-inner">
+                    <div class="edition-cover-container">
+                        {% if edition.image %}
+                            <img src="{{ edition.image | relative_url }}" alt="Copertina {{ edition.title }}" class="edition-cover-img" loading="lazy">
+                        {% else %}
+                            <div class="edition-cover-placeholder">
+                                <span class="edition-number-large">{{ edition.edition }}</span>
+                            </div>
+                        {% endif %}
+                        
+                        {% if edition.featured %}
+                            <div class="featured-badge">⭐ In Evidenza</div>
+                        {% endif %}
+                        
+                        {% if edition.special_edition %}
+                            <div class="special-badge">🎖️ Speciale</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="edition-info">
+                        <div class="edition-meta">
+                            <span class="edition-number">Edizione {{ edition.edition }}</span>
+                            <span class="edition-year">{{ edition.year }}</span>
+                            {% if edition.season %}
+                                <span class="edition-season">{{ edition.season }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <h3 class="edition-title">
+                            <a href="{{ edition.url | relative_url }}">{{ edition.title }}</a>
+                        </h3>
+                        
+                        {% if edition.description %}
+                            <p class="edition-description">{{ edition.description | truncate: 120 }}</p>
+                        {% endif %}
+                        
+                        <div class="edition-pricing">
+                            {% if edition.price_discounted %}
+                                <span class="price-original">€{{ edition.price_original | round: 2 }}</span>
+                                <span class="price-discounted">€{{ edition.price_discounted | round: 2 }}</span>
+                                <span class="discount-percent">-{{ edition.price_original | minus: edition.price_discounted | divided_by: edition.price_original | times: 100 | round }}%</span>
+                            {% else %}
+                                <span class="price-current">€{{ edition.price_original | round: 2 }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        {% if edition.tags %}
+                            <div class="edition-tags">
+                                {% for tag in edition.tags limit: 3 %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                                {% if edition.tags.size > 3 %}
+                                    <span class="tag-more">+{{ edition.tags.size | minus: 3 }}</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="edition-actions">
+                        <a href="{{ edition.url | relative_url }}" class="btn btn-primary btn-small">Dettagli</a>
+                        <div class="purchase-options">
+                            <a href="#" class="btn btn-secondary btn-small" onclick="addToCart('{{ edition.edition }}', 'print')">📖 Cartaceo</a>
+                            <a href="#" class="btn btn-secondary btn-small" onclick="addToCart('{{ edition.edition }}', 'digital')">💻 Digitale</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+    
+    {% if site.rivista.size == 0 %}
+        <div class="empty-catalog">
+            <h3>Nessuna edizione trovata</h3>
+            <p>Le edizioni della rivista verranno caricate automaticamente dal sistema di sincronizzazione.</p>
+        </div>
+    {% endif %}
+</section>
+
+<section class="section university-access">
+    <div class="university-card">
+        <h2>🎓 Accesso Università di Bologna</h2>
+        <p><strong>Dipartimento di Architettura dell'Università di Bologna</strong></p>
+        <p>Accesso completo all'archivio digitale per studenti, docenti e ricercatori. Login con credenziali universitarie.</p>
+        <div class="university-actions">
+            <a href="#" class="btn btn-primary" onclick="universityLogin()">🔐 Login Universitario</a>
+            <a href="#" class="btn btn-secondary">📚 Guida all'Accesso</a>
+        </div>
+        <div class="university-benefits">
+            <h3>Vantaggi per l'Università:</h3>
+            <ul>
+                <li>✅ Accesso gratuito a tutto l'archivio digitale (1990-2024)</li>
+                <li>✅ Download illimitato di articoli per ricerca e didattica</li>
+                <li>✅ Strumenti di ricerca avanzata per materia e autore</li>
+                <li>✅ Notifiche automatiche per nuove pubblicazioni</li>
+                <li>✅ Accesso prioritario a webinar e eventi speciali</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<script>
+// Catalog functionality
+let currentView = 'grid';
+let currentFilter = 'all';
+
+function setView(view) {
+    currentView = view;
+    const grid = document.getElementById('catalogGrid');
+    const buttons = document.querySelectorAll('.view-btn');
+    
+    buttons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-view="${view}"]`).classList.add('active');
+    
+    grid.className = view === 'grid' ? 'catalog-grid' : 'catalog-list';
+}
+
+function filterByYear(year) {
+    currentFilter = year;
+    const cards = document.querySelectorAll('.edition-card');
+    const buttons = document.querySelectorAll('.filter-btn');
+    
+    buttons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-year="${year}"]`).classList.add('active');
+    
+    cards.forEach(card => {
+        if (year === 'all' || card.dataset.year === year) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeIn 0.3s ease-in';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function performSearch() {
+    const searchTerm = document.getElementById('catalogSearch').value.toLowerCase();
+    const cards = document.querySelectorAll('.edition-card');
+    
+    cards.forEach(card => {
+        const title = card.dataset.title;
+        const tags = card.dataset.tags;
+        const authors = card.dataset.authors;
+        const searchable = `${title} ${tags} ${authors}`;
+        
+        if (searchTerm === '' || searchable.includes(searchTerm)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function sortCatalog(sortBy) {
+    const grid = document.getElementById('catalogGrid');
+    const cards = Array.from(grid.querySelectorAll('.edition-card'));
+    
+    cards.sort((a, b) => {
+        switch(sortBy) {
+            case 'newest':
+                return parseInt(b.dataset.year) - parseInt(a.dataset.year);
+            case 'oldest':
+                return parseInt(a.dataset.year) - parseInt(b.dataset.year);
+            case 'title':
+                return a.dataset.title.localeCompare(b.dataset.title);
+            case 'featured':
+                const aFeatured = a.querySelector('.featured-badge') ? 1 : 0;
+                const bFeatured = b.querySelector('.featured-badge') ? 1 : 0;
+                return bFeatured - aFeatured;
+            default:
+                return 0;
+        }
+    });
+    
+    cards.forEach(card => grid.appendChild(card));
+}
+
+function addToCart(edition, type) {
+    // Shopping cart functionality would be implemented here
+    alert(`Aggiunto al carrello: Edizione ${edition} (${type === 'print' ? 'Cartaceo' : 'Digitale'})`);
+}
+
+function universityLogin() {
+    // University authentication would be implemented here
+    alert('Reindirizzamento al sistema di autenticazione dell\'Università di Bologna...');
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Year filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => filterByYear(btn.dataset.year));
+    });
+    
+    // Search functionality
+    document.getElementById('catalogSearch').addEventListener('input', performSearch);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && e.target.id === 'catalogSearch') {
+            performSearch();
+        }
+    });
+});
+</script>

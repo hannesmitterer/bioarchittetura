@@ -1,0 +1,95 @@
+# Site settings
+title: "Bioarchitettura® - Abitare la Terra"
+description: "La rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica dal 1990."
+baseurl: ""
+url: "https://hannesmitterer.github.io/bioarchittetura"
+lang: it
+
+# Author settings
+author:
+  name: "Fondazione Italiana per la Bioarchitettura®"
+  email: "info@bioarchitettura.org"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+
+# Collections
+collections:
+  rivista:
+    output: true
+    permalink: /rivista/:name/
+  master:
+    output: true
+    permalink: /master/:name/
+  news:
+    output: true
+    permalink: /news/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "rivista"
+    values:
+      layout: "edition"
+  - scope:
+      path: ""
+      type: "master"
+    values:
+      layout: "course"
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: "news"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Content settings
+excerpt_separator: <!--more-->
+
+# Performance optimization
+incremental: true
+safe: true
+
+# SEO and social
+twitter:
+  username: bioarchitettura
+  card: summary_large_image
+
+facebook:
+  app_id: 
+  publisher: 
+
+social:
+  name: "Bioarchitettura®"
+  links:
+    - "https://www.bioarchitettura.org"
+    - "https://www.bioarchitettura-fondazione.org"
+
+# Sass settings
+sass:
+  style: compressed
+  sass_dir: _sass
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - readme.md
+  - scripts/
+  - .github/
+  - tmp/
+  - _site/

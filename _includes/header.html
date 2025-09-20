@@ -1,0 +1,30 @@
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <a href="{{ '/' | relative_url }}" class="logo">Bioarchitettura®</a>
+            <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">☰</button>
+            <nav class="nav" id="mainNav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{{ '/' | relative_url }}" class="nav-link{% if page.url == '/' %} active{% endif %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ '/rivista.html' | relative_url }}" class="nav-link{% if page.url contains '/rivista' %} active{% endif %}">Rivista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ '/catalogo.html' | relative_url }}" class="nav-link{% if page.url contains '/catalogo' %} active{% endif %}">Catalogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ '/master.html' | relative_url }}" class="nav-link{% if page.url contains '/master' %} active{% endif %}">Master</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ '/fondazione.html' | relative_url }}" class="nav-link{% if page.url contains '/fondazione' %} active{% endif %}">Fondazione</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ '/shop.html' | relative_url }}" class="nav-link{% if page.url contains '/shop' %} active{% endif %}">Shop</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,32 @@
+{
+  "name": "bioarchittetura-content-sync",
+  "version": "1.0.0",
+  "description": "Content synchronization system for Bioarchitettura magazine",
+  "private": true,
+  "scripts": {
+    "sync": "node .github/scripts/sync-content.js",
+    "optimize": "node .github/scripts/optimize-images.js",
+    "build": "bundle exec jekyll build",
+    "serve": "bundle exec jekyll serve --livereload"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "sharp": "^0.32.0",
+    "fs-extra": "^11.1.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "bioarchitettura",
+    "content-sync",
+    "jekyll",
+    "magazine",
+    "automation"
+  ],
+  "author": "Fondazione Italiana per la Bioarchitettura®",
+  "license": "MIT"
+}

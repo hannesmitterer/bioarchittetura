@@ -1,0 +1,98 @@
+---
+layout: default
+---
+
+<article class="edition-detail">
+    <header class="edition-header">
+        <div class="edition-meta">
+            <span class="edition-number">Edizione {{ page.edition }}</span>
+            <span class="edition-year">{{ page.year }}</span>
+            {% if page.season %}
+                <span class="edition-season">{{ page.season }}</span>
+            {% endif %}
+            {% if page.special_edition %}
+                <span class="special-badge">Edizione Speciale</span>
+            {% endif %}
+        </div>
+        
+        <h1 class="edition-title">{{ page.title }}</h1>
+        
+        {% if page.description %}
+            <p class="edition-description">{{ page.description }}</p>
+        {% endif %}
+        
+        <div class="edition-cover-and-info">
+            {% if page.image %}
+                <div class="edition-cover">
+                    <img src="{{ page.image | relative_url }}" alt="Copertina {{ page.title }}" class="cover-image">
+                </div>
+            {% endif %}
+            
+            <div class="edition-info">
+                {% if page.price_original %}
+                    <div class="pricing">
+                        {% if page.price_discounted %}
+                            <span class="price-original">€{{ page.price_original | round: 2 }}</span>
+                            <span class="price-discounted">€{{ page.price_discounted | round: 2 }}</span>
+                        {% else %}
+                            <span class="price-current">€{{ page.price_original | round: 2 }}</span>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                
+                {% if page.authors %}
+                    <div class="authors">
+                        <h4>Autori</h4>
+                        <ul>
+                            {% for author in page.authors %}
+                                <li>{{ author }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                
+                {% if page.tags %}
+                    <div class="tags">
+                        <h4>Argomenti</h4>
+                        <div class="tag-list">
+                            {% for tag in page.tags %}
+                                <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <div class="actions">
+                    <a href="#" class="btn btn-primary">Acquista Cartaceo</a>
+                    <a href="#" class="btn btn-secondary">Acquista Digitale</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="edition-content">
+        {{ content }}
+    </div>
+    
+    {% if page.featured %}
+        <aside class="related-editions">
+            <h3>Altre Edizioni in Evidenza</h3>
+            <div class="related-grid">
+                {% assign related_editions = site.rivista | where: "featured", true | limit: 3 %}
+                {% for edition in related_editions %}
+                    {% unless edition.url == page.url %}
+                        <div class="related-card">
+                            <a href="{{ edition.url | relative_url }}">
+                                {% if edition.image %}
+                                    <img src="{{ edition.image | relative_url }}" alt="{{ edition.title }}" class="related-cover">
+                                {% endif %}
+                                <h4>{{ edition.title }}</h4>
+                                <span>Edizione {{ edition.edition }}</span>
+                            </a>
+                        </div>
+                    {% endunless %}
+                {% endfor %}
+            </div>
+        </aside>
+    {% endif %}
+</article>
