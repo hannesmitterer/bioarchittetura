@@ -1,6 +1,6 @@
-# Bioarchitettura® - Abitare la Terra
+# Bioarchitettura® - Abitare la Terra 
 
-La prima rivista italiana di bioarchitettura - Website ufficiale con 30 anni di eccellenza nell'architettura sostenibile.
+La prima rivista Italiana di architettura ecologica dal 1991 - Website ufficiale con 30 anni di eccellenza nell'architettura sostenibile.
 
 ## 🏗️ Panoramica del Progetto
 
