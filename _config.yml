@@ -1,0 +1,51 @@
+# Site configuration for Bioarchitettura®
+title: "Bioarchitettura® - Abitare la Terra"
+description: "La rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica dal 1990."
+baseurl: "/bioarchittetura" # For GitHub Pages
+url: "https://hannesmitterer.github.io" # GitHub Pages URL
+repository: "hannesmitterer/bioarchittetura"
+
+# Site metadata
+author: "Fondazione Italiana per la Bioarchitettura®"
+email: "info@bioarchitettura.it"
+lang: "it"
+timezone: "Europe/Rome"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# GitHub Pages compatible plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO and social
+social:
+  name: "Bioarchitettura®"
+  links:
+    - "https://github.com/hannesmitterer/bioarchittetura"
+
+# Exclude from processing
+exclude:
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - README.md
+  - CNAME
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - admin/
+
+# Include files
+include:
+  - _pages
+
+# Sass configuration
+sass:
+  sass_dir: _sass
+  style: compressed

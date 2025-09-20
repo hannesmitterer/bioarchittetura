@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Bioarchitettura® - Abitare la Terra</title>
     <meta name="description" content="Bioarchitettura® è la rivista italiana di riferimento per l'architettura sostenibile, l'edilizia ecologica e la progettazione bioclimatica.">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
         </div>
     </header>
 
-    <main class="main">
+    <main class="main" id="main-content">
         <div class="container">
             <section class="hero">
                 <h1 class="hero-title">Abitare la Terra</h1>
@@ -102,28 +102,6 @@
         </div>
     </footer>
 
-    <script>
-        function toggleMenu() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.toggle('active');
-        }
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.getElementById('mainNav');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
-                nav.classList.remove('active');
-            }
-        });
-        
-        // Close menu when window is resized to desktop
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 768) {
-                document.getElementById('mainNav').classList.remove('active');
-            }
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
