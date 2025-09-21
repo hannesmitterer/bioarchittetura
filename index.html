@@ -451,6 +451,41 @@ bioarchittetura/
                 <a href="rivista.html" class="btn">Scopri la Rivista</a>
             </section>
 
+            <!-- Image Gallery Section -->
+            <section class="gallery-section section" id="gallery">
+                <h2 class="section-title">Galleria Progetti Bioarchitettura®</h2>
+                <p class="gallery-intro">Esplora i progetti e le realizzazioni che rappresentano l'eccellenza nell'architettura sostenibile.</p>
+                
+                <div class="gallery-controls">
+                    <button class="gallery-filter active" data-filter="all" aria-label="Mostra tutti i progetti">Tutti</button>
+                    <button class="gallery-filter" data-filter="residential" aria-label="Filtra progetti residenziali">Residenziale</button>
+                    <button class="gallery-filter" data-filter="commercial" aria-label="Filtra progetti commerciali">Commerciale</button>
+                    <button class="gallery-filter" data-filter="public" aria-label="Filtra progetti pubblici">Pubblico</button>
+                </div>
+
+                <div class="gallery-grid" role="region" aria-label="Galleria immagini progetti">
+                    <!-- Gallery images will be loaded here by JavaScript -->
+                </div>
+
+                <button class="gallery-load-more btn-secondary" id="loadMoreBtn" aria-label="Carica altre immagini">
+                    Carica Altri Progetti
+                </button>
+            </section>
+
+            <!-- Lightbox Modal -->
+            <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightbox-title">
+                <div class="lightbox-content">
+                    <button class="lightbox-close" aria-label="Chiudi galleria">&times;</button>
+                    <button class="lightbox-prev" aria-label="Immagine precedente">&#8249;</button>
+                    <button class="lightbox-next" aria-label="Immagine successiva">&#8250;</button>
+                    <img class="lightbox-image" src="" alt="" />
+                    <div class="lightbox-caption">
+                        <h3 id="lightbox-title"></h3>
+                        <p class="lightbox-description"></p>
+                    </div>
+                </div>
+            </div>
+
             <section class="section">
                 <h2 class="section-title">Bioarchitettura® per un Futuro Sostenibile</h2>
                 <div class="content-grid">
@@ -534,6 +569,323 @@ bioarchittetura/
             if (window.innerWidth >= 768) {
                 document.getElementById('mainNav').classList.remove('active');
             }
+        });
+
+        // ========================================
+        // IMAGE GALLERY FUNCTIONALITY
+        // ========================================
+
+        class ImageGallery {
+            constructor() {
+                this.images = this.generateImageList();
+                this.currentFilter = 'all';
+                this.displayedImages = 0;
+                this.imagesPerLoad = 12;
+                this.currentLightboxIndex = 0;
+                
+                this.galleryGrid = document.querySelector('.gallery-grid');
+                this.filterButtons = document.querySelectorAll('.gallery-filter');
+                this.loadMoreBtn = document.getElementById('loadMoreBtn');
+                this.lightbox = document.getElementById('lightbox');
+                
+                this.init();
+            }
+            
+            generateImageList() {
+                const images = [];
+                const categories = ['residential', 'commercial', 'public'];
+                
+                // Add 33n series images
+                for (let i = 1; i <= 47; i++) {
+                    const num = i.toString().padStart(3, '0');
+                    images.push({
+                        src: `33n${num}.jpg`,
+                        title: `Progetto Bioarchitettura ${num}`,
+                        description: `Esempio di architettura sostenibile che dimostra l'integrazione armoniosa tra tecnologia moderna e rispetto ambientale.`,
+                        category: categories[Math.floor(Math.random() * categories.length)],
+                        alt: `Progetto di bioarchitettura sostenibile numero ${num}`
+                    });
+                }
+                
+                // Add 44bion series images
+                const bionNumbers = ['005', '006', '007', '008', '009', '010', '012', '013', '014', '017', '019', '020', '022', '024', '026', '027', '028', '029'];
+                bionNumbers.forEach((num, index) => {
+                    images.push({
+                        src: `44bion${num}.jpg`,
+                        title: `Progetto Bion ${num}`,
+                        description: `Realizzazione innovativa che applica principi bioclimatici per ottimizzare il comfort abitativo e l'efficienza energetica.`,
+                        category: categories[Math.floor(Math.random() * categories.length)],
+                        alt: `Progetto bioarchitettonico Bion numero ${num}`
+                    });
+                });
+                
+                return images.sort(() => Math.random() - 0.5); // Shuffle array
+            }
+            
+            init() {
+                this.loadImages();
+                this.setupEventListeners();
+            }
+            
+            setupEventListeners() {
+                // Filter buttons
+                this.filterButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.handleFilter(e.target.dataset.filter);
+                    });
+                });
+                
+                // Load more button
+                this.loadMoreBtn.addEventListener('click', () => {
+                    this.loadImages();
+                });
+                
+                // Lightbox controls
+                document.querySelector('.lightbox-close').addEventListener('click', () => {
+                    this.closeLightbox();
+                });
+                
+                document.querySelector('.lightbox-prev').addEventListener('click', () => {
+                    this.previousImage();
+                });
+                
+                document.querySelector('.lightbox-next').addEventListener('click', () => {
+                    this.nextImage();
+                });
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (this.lightbox.classList.contains('active')) {
+                        switch(e.key) {
+                            case 'Escape':
+                                this.closeLightbox();
+                                break;
+                            case 'ArrowLeft':
+                                this.previousImage();
+                                break;
+                            case 'ArrowRight':
+                                this.nextImage();
+                                break;
+                        }
+                    }
+                });
+                
+                // Close lightbox when clicking background
+                this.lightbox.addEventListener('click', (e) => {
+                    if (e.target === this.lightbox) {
+                        this.closeLightbox();
+                    }
+                });
+                
+                // Touch events for mobile swipe
+                let touchStartX = 0;
+                let touchStartY = 0;
+                
+                this.lightbox.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                });
+                
+                this.lightbox.addEventListener('touchend', (e) => {
+                    const touchEndX = e.changedTouches[0].clientX;
+                    const touchEndY = e.changedTouches[0].clientY;
+                    const diffX = touchStartX - touchEndX;
+                    const diffY = touchStartY - touchEndY;
+                    
+                    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                        if (diffX > 0) {
+                            this.nextImage();
+                        } else {
+                            this.previousImage();
+                        }
+                    }
+                });
+            }
+            
+            getFilteredImages() {
+                if (this.currentFilter === 'all') {
+                    return this.images;
+                }
+                return this.images.filter(img => img.category === this.currentFilter);
+            }
+            
+            loadImages() {
+                const filteredImages = this.getFilteredImages();
+                const imagesToShow = filteredImages.slice(this.displayedImages, this.displayedImages + this.imagesPerLoad);
+                
+                imagesToShow.forEach((image, index) => {
+                    const imageElement = this.createImageElement(image, this.displayedImages + index);
+                    this.galleryGrid.appendChild(imageElement);
+                    
+                    // Lazy load images
+                    this.lazyLoadImage(imageElement, image.src);
+                });
+                
+                this.displayedImages += imagesToShow.length;
+                
+                // Hide load more button if all images are loaded
+                if (this.displayedImages >= filteredImages.length) {
+                    this.loadMoreBtn.style.display = 'none';
+                } else {
+                    this.loadMoreBtn.style.display = 'block';
+                }
+            }
+            
+            createImageElement(image, index) {
+                const item = document.createElement('div');
+                item.className = 'gallery-item loading';
+                item.setAttribute('tabindex', '0');
+                item.setAttribute('role', 'button');
+                item.setAttribute('aria-label', `Apri immagine: ${image.title}`);
+                item.dataset.index = index;
+                
+                item.innerHTML = `
+                    <img src="" alt="${image.alt}" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h3>${image.title}</h3>
+                        <p>${image.description}</p>
+                    </div>
+                `;
+                
+                // Click and keyboard events
+                const openLightbox = () => this.openLightbox(index);
+                item.addEventListener('click', openLightbox);
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox();
+                    }
+                });
+                
+                return item;
+            }
+            
+            lazyLoadImage(element, src) {
+                const img = element.querySelector('img');
+                const imageLoader = new Image();
+                
+                imageLoader.onload = () => {
+                    img.src = src;
+                    element.classList.remove('loading');
+                };
+                
+                imageLoader.onerror = () => {
+                    img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltbWFnaW5lIG5vbiBkaXNwb25pYmlsZTwvdGV4dD48L3N2Zz4=';
+                    element.classList.remove('loading');
+                };
+                
+                // Use Intersection Observer for better performance
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                imageLoader.src = src;
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    });
+                    observer.observe(element);
+                } else {
+                    // Fallback for older browsers
+                    imageLoader.src = src;
+                }
+            }
+            
+            handleFilter(filter) {
+                this.currentFilter = filter;
+                this.displayedImages = 0;
+                this.galleryGrid.innerHTML = '';
+                
+                // Update active filter button
+                this.filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.filter === filter) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                this.loadImages();
+                
+                // Announce filter change to screen readers
+                const announcement = `Filtro applicato: ${filter === 'all' ? 'tutti i progetti' : filter}`;
+                this.announceToScreenReader(announcement);
+            }
+            
+            openLightbox(index) {
+                const filteredImages = this.getFilteredImages();
+                this.currentLightboxIndex = index;
+                const image = filteredImages[index];
+                
+                if (!image) return;
+                
+                const lightboxImage = this.lightbox.querySelector('.lightbox-image');
+                const lightboxTitle = this.lightbox.querySelector('#lightbox-title');
+                const lightboxDescription = this.lightbox.querySelector('.lightbox-description');
+                
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+                lightboxTitle.textContent = image.title;
+                lightboxDescription.textContent = image.description;
+                
+                this.lightbox.classList.add('active');
+                this.lightbox.setAttribute('aria-hidden', 'false');
+                
+                // Focus management
+                this.lightbox.querySelector('.lightbox-close').focus();
+                
+                // Prevent background scrolling
+                document.body.style.overflow = 'hidden';
+            }
+            
+            closeLightbox() {
+                this.lightbox.classList.remove('active');
+                this.lightbox.setAttribute('aria-hidden', 'true');
+                
+                // Restore background scrolling
+                document.body.style.overflow = '';
+                
+                // Return focus to the gallery item
+                const galleryItem = document.querySelector(`[data-index="${this.currentLightboxIndex}"]`);
+                if (galleryItem) {
+                    galleryItem.focus();
+                }
+            }
+            
+            previousImage() {
+                const filteredImages = this.getFilteredImages();
+                this.currentLightboxIndex = (this.currentLightboxIndex - 1 + filteredImages.length) % filteredImages.length;
+                this.openLightbox(this.currentLightboxIndex);
+            }
+            
+            nextImage() {
+                const filteredImages = this.getFilteredImages();
+                this.currentLightboxIndex = (this.currentLightboxIndex + 1) % filteredImages.length;
+                this.openLightbox(this.currentLightboxIndex);
+            }
+            
+            announceToScreenReader(message) {
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.className = 'sr-only';
+                announcement.style.position = 'absolute';
+                announcement.style.left = '-10000px';
+                announcement.style.width = '1px';
+                announcement.style.height = '1px';
+                announcement.style.overflow = 'hidden';
+                announcement.textContent = message;
+                
+                document.body.appendChild(announcement);
+                
+                setTimeout(() => {
+                    document.body.removeChild(announcement);
+                }, 1000);
+            }
+        }
+        
+        // Initialize gallery when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new ImageGallery();
         });
     </script>
 </body>
