@@ -40,6 +40,36 @@
                 <a href="rivista.html" class="btn">Scopri la Rivista</a>
             </section>
 
+            <!-- Image Slideshow Section -->
+            <section class="slideshow-section">
+                <h2 class="section-title text-center" style="margin-bottom: var(--space-lg);">Galleria Visuale Bioarchitettura®</h2>
+                <p class="text-center" style="margin-bottom: var(--space-xl); color: var(--text-secondary);">
+                    Esplora la nostra collezione di immagini che raccontano la storia dell'architettura sostenibile
+                </p>
+                
+                <div class="slideshow-container" id="slideshow">
+                    <div class="slideshow-loading" id="slideshow-loading">
+                        <!-- Loading spinner will be shown here -->
+                    </div>
+                    
+                    <div class="slideshow-wrapper" id="slideshow-wrapper" style="display: none;">
+                        <!-- Slides will be dynamically generated here -->
+                    </div>
+                    
+                    <!-- Navigation buttons -->
+                    <button class="slideshow-nav prev" id="prevBtn" aria-label="Immagine precedente">‹</button>
+                    <button class="slideshow-nav next" id="nextBtn" aria-label="Immagine successiva">›</button>
+                    
+                    <!-- Progress bar -->
+                    <div class="slideshow-progress" id="progress"></div>
+                </div>
+                
+                <!-- Dots navigation -->
+                <div class="slideshow-dots" id="dots">
+                    <!-- Dots will be dynamically generated here -->
+                </div>
+            </section>
+
             <section class="section">
                 <h2 class="section-title">Bioarchitettura® per un Futuro Sostenibile</h2>
                 <div class="content-grid">
@@ -103,6 +133,7 @@
     </footer>
 
     <script>
+        // Menu functionality
         function toggleMenu() {
             const nav = document.getElementById('mainNav');
             nav.classList.toggle('active');
@@ -123,6 +154,231 @@
             if (window.innerWidth >= 768) {
                 document.getElementById('mainNav').classList.remove('active');
             }
+        });
+
+        // Slideshow functionality
+        class ImageSlideshow {
+            constructor() {
+                this.images = [];
+                this.currentSlide = 0;
+                this.autoPlayInterval = null;
+                this.autoPlayDelay = 5000; // 5 seconds
+                this.isLoaded = false;
+                
+                this.container = document.getElementById('slideshow');
+                this.wrapper = document.getElementById('slideshow-wrapper');
+                this.loading = document.getElementById('slideshow-loading');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.dotsContainer = document.getElementById('dots');
+                this.progressBar = document.getElementById('progress');
+                
+                this.init();
+            }
+            
+            async init() {
+                try {
+                    await this.loadImages();
+                    this.createSlides();
+                    this.createDots();
+                    this.bindEvents();
+                    this.showSlide(0);
+                    this.startAutoPlay();
+                    this.hideLoading();
+                } catch (error) {
+                    console.error('Error initializing slideshow:', error);
+                    this.showError();
+                }
+            }
+            
+            async loadImages() {
+                // Define all images in the repository
+                const imageFiles = [
+                    '33n001.jpg', '33n002.jpg', '33n003.jpg', '33n004.jpg', '33n005.jpg',
+                    '33n006.jpg', '33n007.jpg', '33n008.jpg', '33n009.jpg', '33n010.jpg',
+                    '33n011.jpg', '33n012.jpg', '33n013.jpg', '33n014.jpg', '33n015.jpg',
+                    '33n016.jpg', '33n017.jpg', '33n018.jpg', '33n019.jpg', '33n020.jpg',
+                    '33n021.jpg', '33n022.jpg', '33n023.jpg', '33n024.jpg', '33n025.jpg',
+                    '33n026.jpg', '33n027.jpg', '33n028.jpg', '33n029.jpg', '33n030.jpg',
+                    '33n031.jpg', '33n032.jpg', '33n033.jpg', '33n034.jpg', '33n035.jpg',
+                    '33n036.jpg', '33n037.jpg', '33n038.jpg', '33n039.jpg', '33n040.jpg',
+                    '33n041.jpg', '33n042.jpg', '33n043.jpg', '33n044.jpg', '33n045.jpg',
+                    '33n046.jpg', '33n047.jpg', '33n048.jpg',
+                    '44bion005.jpg', '44bion006.jpg', '44bion007.jpg', '44bion008.jpg', '44bion009.jpg',
+                    '44bion010.jpg', '44bion012.jpg', '44bion013.jpg', '44bion014.jpg', '44bion017.jpg',
+                    '44bion019.jpg', '44bion020.jpg', '44bion022.jpg', '44bion024.jpg', '44bion026.jpg',
+                    '44bion027.jpg', '44bion028.jpg', '44bion029.jpg',
+                    'LogoBIO_250x250.jpg'
+                ];
+                
+                // Create image objects with metadata
+                this.images = imageFiles.map((filename, index) => {
+                    const isLogo = filename.includes('LogoBIO');
+                    const is33Series = filename.startsWith('33n');
+                    const is44Series = filename.startsWith('44bion');
+                    
+                    let title, description;
+                    
+                    if (isLogo) {
+                        title = 'Logo Bioarchitettura®';
+                        description = 'Il logo ufficiale della rivista italiana di architettura sostenibile';
+                    } else if (is33Series) {
+                        const num = filename.match(/33n(\d+)/)[1];
+                        title = `Architettura Sostenibile - Edizione 33/${num}`;
+                        description = 'Progetti e soluzioni innovative per l\'edilizia ecologica e il comfort abitativo';
+                    } else if (is44Series) {
+                        const num = filename.match(/44bion(\d+)/)[1];
+                        title = `Bioarchitettura - Volume 44/${num}`;
+                        description = 'Tecnologie e metodologie per un\'architettura rispettosa dell\'ambiente';
+                    } else {
+                        title = `Progetto Bioarchitettura ${index + 1}`;
+                        description = 'Esempi di architettura sostenibile e progettazione bioclimatica';
+                    }
+                    
+                    return {
+                        src: filename,
+                        title,
+                        description,
+                        loaded: false
+                    };
+                });
+            }
+            
+            createSlides() {
+                this.wrapper.innerHTML = '';
+                
+                this.images.forEach((image, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'slide';
+                    slide.innerHTML = `
+                        <img src="${image.src}" alt="${image.title}" loading="lazy" onerror="this.style.display='none'">
+                        <div class="slide-info">
+                            <div class="slide-title">${image.title}</div>
+                            <div class="slide-description">${image.description}</div>
+                        </div>
+                    `;
+                    this.wrapper.appendChild(slide);
+                });
+            }
+            
+            createDots() {
+                this.dotsContainer.innerHTML = '';
+                
+                // Show dots only for first 20 images to avoid clutter
+                const maxDots = Math.min(this.images.length, 20);
+                
+                for (let i = 0; i < maxDots; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'dot';
+                    dot.setAttribute('aria-label', `Vai alla slide ${i + 1}`);
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    this.dotsContainer.appendChild(dot);
+                }
+            }
+            
+            bindEvents() {
+                this.prevBtn.addEventListener('click', () => this.previousSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.previousSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                    if (e.key === 'Escape') this.pauseAutoPlay();
+                });
+                
+                // Touch/swipe support
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                this.wrapper.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                
+                this.wrapper.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    if (touchStartX - touchEndX > 50) this.nextSlide();
+                    if (touchEndX - touchStartX > 50) this.previousSlide();
+                });
+                
+                // Pause autoplay on hover
+                this.container.addEventListener('mouseenter', () => this.pauseAutoPlay());
+                this.container.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+            
+            showSlide(index) {
+                const slides = this.wrapper.querySelectorAll('.slide');
+                const dots = this.dotsContainer.querySelectorAll('.dot');
+                
+                // Remove active class from all slides and dots
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Add active class to current slide and dot
+                if (slides[index]) {
+                    slides[index].classList.add('active');
+                }
+                
+                // Update dot (only if within visible range)
+                const dotIndex = Math.min(index, dots.length - 1);
+                if (dots[dotIndex]) {
+                    dots[dotIndex].classList.add('active');
+                }
+                
+                // Update progress bar
+                const progress = ((index + 1) / this.images.length) * 100;
+                this.progressBar.style.width = `${progress}%`;
+                
+                this.currentSlide = index;
+            }
+            
+            nextSlide() {
+                const nextIndex = (this.currentSlide + 1) % this.images.length;
+                this.showSlide(nextIndex);
+            }
+            
+            previousSlide() {
+                const prevIndex = this.currentSlide === 0 ? this.images.length - 1 : this.currentSlide - 1;
+                this.showSlide(prevIndex);
+            }
+            
+            goToSlide(index) {
+                this.showSlide(index);
+            }
+            
+            startAutoPlay() {
+                this.pauseAutoPlay(); // Clear any existing interval
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.autoPlayDelay);
+            }
+            
+            pauseAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                }
+            }
+            
+            hideLoading() {
+                this.loading.style.display = 'none';
+                this.wrapper.style.display = 'block';
+                this.isLoaded = true;
+            }
+            
+            showError() {
+                this.loading.innerHTML = `
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <p>⚠️ Errore nel caricamento delle immagini</p>
+                        <p>Verifica la connessione e riprova</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize slideshow when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            new ImageSlideshow();
         });
     </script>
 </body>
