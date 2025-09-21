@@ -390,6 +390,30 @@ img {
     transform: translateY(-4px) scale(1.02);
 }
 
+/* Architecture gallery image containers */
+.architecture-gallery .img-container {
+    width: 280px;
+    height: 200px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-normal);
+}
+
+.architecture-gallery .img-container:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.architecture-gallery .img-container::before {
+    display: none; /* Override aspect ratio for fixed size gallery */
+}
+
+.architecture-gallery .img-container img {
+    position: static;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
 .arch-img-1 {
     animation: float 3s ease-in-out infinite;
 }
@@ -766,7 +790,8 @@ img {
 
 /* Responsive Design */
 @media (max-width: 479px) {
-    .arch-img {
+    .arch-img,
+    .architecture-gallery .img-container {
         width: 100%;
         max-width: 280px;
         height: 160px;
@@ -796,7 +821,8 @@ img {
         gap: var(--space-md);
     }
     
-    .arch-img {
+    .arch-img,
+    .architecture-gallery .img-container {
         width: 180px;
         height: 140px;
     }
@@ -855,7 +881,8 @@ img {
         justify-content: space-between;
     }
     
-    .arch-img {
+    .arch-img,
+    .architecture-gallery .img-container {
         width: 220px;
         height: 160px;
     }
@@ -886,7 +913,8 @@ img {
         grid-template-columns: repeat(3, 1fr);
     }
     
-    .arch-img {
+    .arch-img,
+    .architecture-gallery .img-container {
         width: 280px;
         height: 200px;
     }

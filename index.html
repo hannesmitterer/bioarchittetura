@@ -6,6 +6,9 @@
     <title>Bioarchitettura® - Abitare la Terra</title>
     <meta name="description" content="Bioarchitettura® - La prima rivista Italiana di architettura ecologica dal 1991. Sito ufficiale per 30 anni di eccellenza nell'architettura sostenibile, formazione, shop, news.">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/images.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
     <meta name="keywords" content="bioarchitettura, architettura sostenibile, rivista, ecologia, formazione, shop, jekyll, github pages, abbonamenti, ebooks, corsi, Italia">
     <meta name="theme-color" content="#2d5016">
@@ -72,9 +75,27 @@
                 </div>
                 <div class="hero-visual">
                     <div class="architecture-gallery">
-                        <img src="assets/img/modern-architecture-1.jpg" alt="Architettura sostenibile moderna" class="arch-img arch-img-1" loading="lazy">
-                        <img src="assets/img/modern-architecture-2.jpg" alt="Bioedilizia contemporanea" class="arch-img arch-img-2" loading="lazy">
-                        <img src="assets/img/modern-architecture-3.jpg" alt="Design ecologico innovativo" class="arch-img arch-img-3" loading="lazy">
+                        <div class="img-container aspect-3-2">
+                            <img src="assets/img/modern-architecture-1.jpg" 
+                                 alt="Architettura sostenibile moderna" 
+                                 class="arch-img arch-img-1 responsive-img" 
+                                 loading="lazy"
+                                 data-critical="false">
+                        </div>
+                        <div class="img-container aspect-3-2">
+                            <img src="assets/img/modern-architecture-2.jpg" 
+                                 alt="Bioedilizia contemporanea" 
+                                 class="arch-img arch-img-2 responsive-img" 
+                                 loading="lazy"
+                                 data-critical="false">
+                        </div>
+                        <div class="img-container aspect-3-2">
+                            <img src="assets/img/modern-architecture-3.jpg" 
+                                 alt="Design ecologico innovativo" 
+                                 class="arch-img arch-img-3 responsive-img" 
+                                 loading="lazy"
+                                 data-critical="false">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -109,8 +130,11 @@
                 <h2 class="section-title">I Nostri Valori</h2>
                 <div class="values-grid">
                     <div class="value-card">
-                        <div class="value-image">
-                            <img src="assets/img/sustainability.jpg" alt="Sostenibilità ambientale" loading="lazy">
+                        <div class="value-image img-container">
+                            <img src="assets/img/sustainability.jpg" 
+                                 alt="Sostenibilità ambientale" 
+                                 class="responsive-img"
+                                 loading="lazy">
                         </div>
                         <div class="value-content">
                             <h3 class="value-title">🌱 Sostenibilità Ambientale</h3>
@@ -118,8 +142,11 @@
                         </div>
                     </div>
                     <div class="value-card">
-                        <div class="value-image">
-                            <img src="assets/img/comfort.jpg" alt="Comfort abitativo" loading="lazy">
+                        <div class="value-image img-container">
+                            <img src="assets/img/comfort.jpg" 
+                                 alt="Comfort abitativo" 
+                                 class="responsive-img"
+                                 loading="lazy">
                         </div>
                         <div class="value-content">
                             <h3 class="value-title">🏠 Comfort Abitativo</h3>
@@ -127,8 +154,11 @@
                         </div>
                     </div>
                     <div class="value-card">
-                        <div class="value-image">
-                            <img src="assets/img/innovation.jpg" alt="Innovazione tecnica" loading="lazy">
+                        <div class="value-image img-container">
+                            <img src="assets/img/innovation.jpg" 
+                                 alt="Innovazione tecnica" 
+                                 class="responsive-img"
+                                 loading="lazy">
                         </div>
                         <div class="value-content">
                             <h3 class="value-title">💡 Innovazione Tecnica</h3>
@@ -151,7 +181,12 @@
                         </div>
                     </div>
                     <div class="edition-visual">
-                        <img src="assets/img/magazine-cover.jpg" alt="Copertina Bioarchitettura 152/153" class="edition-cover" loading="lazy">
+                        <div class="img-container aspect-4-3">
+                            <img src="assets/img/magazine-cover.jpg" 
+                                 alt="Copertina Bioarchitettura 152/153" 
+                                 class="edition-cover responsive-img" 
+                                 loading="lazy">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -210,6 +245,7 @@
         </div>
     </footer>
 
+    <script src="assets/js/image-optimizer.js"></script>
     <script>
         function toggleMenu() {
             const nav = document.getElementById('mainNav');
