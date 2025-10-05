@@ -32,6 +32,7 @@
       <ul class="nav-list">
         <li><a href="#home">Home</a></li>
         <li><a href="#edizioni">Edizioni</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#about">About</a></li>
       </ul>
     </nav>
@@ -46,36 +47,58 @@
         </p>
         <ul>
           <li>Edizioni tematiche sulla bioarchitettura</li>
-          <li>Soluzioni innovative per ambienti salubri</li>
+          <li>Soluzioni innovative per ambienti salubri e sostenibili</li>
           <li>Eventi, workshop e formazione</li>
         </ul>
+        <div class="cta-row">
+          <a href="#gallery" class="cta-btn">Esplora la Gallery</a>
+          <a href="#about" class="cta-btn alt">Chi Siamo</a>
+        </div>
       </div>
       <div id="threejs-container" class="threejs-container" aria-label="3D Architectural Model"></div>
     </section>
-    <section id="edizioni" class="section gallery-section">
-      <h2>Edizioni & Progetti</h2>
+    <section id="gallery" class="section gallery-section">
+      <h2>Gallery & Progetti</h2>
       <p class="gallery-intro">
-        Scopri alcune delle nostre recenti pubblicazioni e progetti innovativi realizzati dal team Bioarchitettura®.
+        Scopri le nostre pubblicazioni e progetti innovativi realizzati dal team Bioarchitettura®.
       </p>
       <div class="gallery-grid" id="gallery" aria-label="Gallery of Edizioni"></div>
     </section>
     <section id="about" class="section about-section">
       <h2>Chi Siamo</h2>
-      <p>
-        Da oltre 30 anni Bioarchitettura® promuove la cultura del costruire sano e sostenibile.<br>
-        Il nostro team multidisciplinare collabora con esperti, università e aziende per diffondere approcci innovativi e responsabili.
-      </p>
-      <ul>
-        <li>Repository: <strong>bioarchittetura</strong></li>
-        <li>Owner: <strong>hannesmitterer</strong></li>
-        <li>Contatto: <a href="mailto:info@bioarchitettura.it">info@bioarchitettura.it</a></li>
-      </ul>
+      <div class="about-flex">
+        <div class="about-text">
+          <p>
+            Da oltre 30 anni Bioarchitettura® promuove la cultura del costruire sano e sostenibile.<br>
+            Il nostro team multidisciplinare collabora con esperti, università e aziende per diffondere approcci innovativi e responsabili.
+          </p>
+          <ul>
+            <li>Repository: <strong>bioarchittetura</strong></li>
+            <li>Owner: <strong>hannesmitterer</strong></li>
+            <li>Contatto: <a href="mailto:info@bioarchitettura.it">info@bioarchitettura.it</a></li>
+          </ul>
+        </div>
+        <div class="about-img">
+          <img src="assets/images/about-bioarchitettura.jpg" alt="Bioarchitettura Team" loading="lazy" />
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="section contact-section">
+      <h2>Contattaci</h2>
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="Nome" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" rows="4" placeholder="Messaggio" required></textarea>
+        <button type="submit">Invia</button>
+      </form>
+      <p class="contact-info">Oppure scrivi a <a href="mailto:info@bioarchitettura.it">info@bioarchitettura.it</a></p>
     </section>
   </main>
   <footer>
     <div class="footer-content">
       <span>&copy; 2025 Bioarchitettura®</span>
       <span> | Powered by GitHub & Three.js</span>
+      <span><a href="#contact" style="color: #00bcd4;">Contattaci</a></span>
     </div>
   </footer>
   <script src="src/main.js"></script>
