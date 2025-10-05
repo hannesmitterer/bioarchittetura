@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="site-title">Bioarchitettura®</title>
+  <link rel="stylesheet" href="src/main.css">
+</head>
+<body>
+  <header>
+    <h1 contenteditable="true" id="editable-title">Bioarchitettura®</h1>
+    <nav>
+      <button aria-label="Toggle navigation" id="menu-toggle">☰</button>
+      <ul id="nav-list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#edizioni">Edizioni</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="home">
+      <h2 contenteditable="true" id="editable-home-heading">Welcome</h2>
+      <p contenteditable="true" id="editable-home-content">
+        Benvenuti in Bioarchitettura®. Scoprite le nostre edizioni, progetti e contenuti!
+      </p>
+    </section>
+    <section id="edizioni">
+      <h2 contenteditable="true" id="editable-edizioni-heading">Edizioni - Gallery</h2>
+      <div class="gallery" id="gallery">
+        <!-- Dynamic gallery images will be loaded here -->
+      </div>
+      <button id="add-image-btn">Add Image</button>
+      <div class="edizioni-content">
+        <h3 contenteditable="true" id="editable-publications-heading">Le nostre pubblicazioni</h3>
+        <ul id="publications-list">
+          <li contenteditable="true">Edizione 1</li>
+          <li contenteditable="true">Edizione 2</li>
+          <li contenteditable="true">Edizione 3</li>
+        </ul>
+        <button id="add-publication-btn">Add Publication</button>
+      </div>
+    </section>
+    <section id="about">
+      <h2 contenteditable="true" id="editable-about-heading">About</h2>
+      <p contenteditable="true" id="editable-about-content">
+        Bioarchitettura® è dedicato alla promozione e allo studio dell’architettura sostenibile. Esplora il nostro archivio, le edizioni pubblicate e i progetti speciali.
+      </p>
+      <div class="repo-info">
+        <h3 contenteditable="true">Repository Info</h3>
+        <ul>
+          <li contenteditable="true">Owner: hannesmitterer</li>
+          <li contenteditable="true">Branches: 33</li>
+          <li contenteditable="true">Assets: Immagini, edizioni, file di progetto</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Bioarchitettura®</p>
+    <button id="save-changes-btn">Save Changes</button>
+  </footer>
+  <script src="src/main.js"></script>
+</body>
+</html>
