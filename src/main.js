@@ -1,11 +1,11 @@
-// Interactive navigation for mobile
+// Responsive navigation for mobile
 const navToggle = document.querySelector('.nav-toggle');
 const navList = document.querySelector('.nav-list');
 navToggle.addEventListener('click', () => {
   navList.classList.toggle('active');
 });
 
-// Robust gallery data: images with fallback, titles, descriptions
+// Gallery images with fallback, title, description
 const images = [
   {
     src: "assets/images/33n001.jpg",
@@ -81,86 +81,107 @@ gallery.addEventListener('click', e => {
   }
 });
 
-// Architectural 3D animation: a simple house model built with Three.js
+// Advanced 3D architectural scene
 function init3DScene() {
   const container = document.getElementById('threejs-container');
-  if (!container) return; // Safety check
+  if (!container) return;
   const width = container.offsetWidth || 400;
   const height = container.offsetHeight || 340;
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xf4f4f4);
+  scene.background = new THREE.Color(0xeaf6fb);
 
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-  camera.position.set(4, 3, 7);
+  camera.position.set(5, 3.7, 9);
 
-  const renderer = new THREE.WebGLRenderer({antialias: true});
+  const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
   renderer.setSize(width, height);
   container.appendChild(renderer.domElement);
 
-  // Orbit Controls (if available)
-  if (typeof THREE.OrbitControls === "function") {
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-  }
+  // Controls
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
 
   // Lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-  scene.add(ambientLight);
-  const dirLight = new THREE.DirectionalLight(0xffffff, 0.7);
-  dirLight.position.set(4, 7, 6);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+  const dirLight = new THREE.DirectionalLight(0xf5f5dc, 0.9);
+  dirLight.position.set(6, 8, 7);
   scene.add(dirLight);
 
+  // Ground
+  const groundGeo = new THREE.CircleGeometry(7, 32);
+  const groundMat = new THREE.MeshStandardMaterial({color: 0xc8e6c9});
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI/2;
+  ground.position.y = -1.1;
+  scene.add(ground);
+
   // House base
-  const houseGeo = new THREE.BoxGeometry(3, 1.8, 2.2);
-  const houseMat = new THREE.MeshStandardMaterial({color: 0xffffff});
-  const house = new THREE.Mesh(houseGeo, houseMat);
-  house.position.y = 0;
-  scene.add(house);
+  const baseGeo = new THREE.BoxGeometry(3, 1.7, 2.2);
+  const baseMat = new THREE.MeshStandardMaterial({color: 0xffffff});
+  const base = new THREE.Mesh(baseGeo, baseMat);
+  base.position.y = 0;
+  scene.add(base);
 
   // Roof
-  const roofGeo = new THREE.ConeGeometry(2.1, 1, 4);
-  const roofMat = new THREE.MeshStandardMaterial({color: 0x00bcd4});
+  const roofGeo = new THREE.ConeGeometry(2.3, 1.1, 4);
+  const roofMat = new THREE.MeshStandardMaterial({color: 0x009688});
   const roof = new THREE.Mesh(roofGeo, roofMat);
-  roof.position.y = 1.4;
+  roof.position.y = 1.45;
   roof.rotation.y = Math.PI/4;
   scene.add(roof);
 
   // Door
-  const doorGeo = new THREE.BoxGeometry(0.4, 0.7, 0.08);
+  const doorGeo = new THREE.BoxGeometry(0.4, 0.7, 0.09);
   const doorMat = new THREE.MeshStandardMaterial({color: 0x795548});
   const door = new THREE.Mesh(doorGeo, doorMat);
-  door.position.set(0, -0.55, 1.15);
+  door.position.set(0, -0.55, 1.13);
   scene.add(door);
 
   // Windows
-  const windowGeo = new THREE.BoxGeometry(0.45, 0.45, 0.08);
+  const windowGeo = new THREE.BoxGeometry(0.45, 0.45, 0.07);
   const windowMat = new THREE.MeshStandardMaterial({color: 0x90caf9});
   const window1 = new THREE.Mesh(windowGeo, windowMat);
-  window1.position.set(-0.7, 0.1, 1.15);
+  window1.position.set(-0.7, 0.1, 1.13);
   scene.add(window1);
   const window2 = window1.clone();
-  window2.position.set(0.7, 0.1, 1.15);
+  window2.position.set(0.7, 0.1, 1.13);
   scene.add(window2);
 
-  // Trees
-  for(let i=0;i<2;i++){
-    const trunkGeo = new THREE.CylinderGeometry(0.08,0.12,0.6,8);
+  // Trees (left/right)
+  for(let i=0;i<2;i++){ 
+    const trunkGeo = new THREE.CylinderGeometry(0.09,0.12,0.62,8);
     const trunkMat = new THREE.MeshStandardMaterial({color:0x8d6e63});
     const trunk = new THREE.Mesh(trunkGeo,trunkMat);
-    trunk.position.set(-2.1+i*4.2,-0.8,0.7);
+    trunk.position.set(-2.7+i*5.4,-0.7,0.8);
     scene.add(trunk);
 
-    const crownGeo = new THREE.SphereGeometry(0.35,16,16);
+    const crownGeo = new THREE.SphereGeometry(0.37,16,16);
     const crownMat = new THREE.MeshStandardMaterial({color:0x388e3c});
     const crown = new THREE.Mesh(crownGeo,crownMat);
-    crown.position.set(-2.1+i*4.2,-0.4,0.7);
+    crown.position.set(-2.7+i*5.4,0.0,0.8);
     scene.add(crown);
   }
 
-  // Animate roof rotation for effect
+  // Sun
+  const sunGeo = new THREE.SphereGeometry(0.35,24,24);
+  const sunMat = new THREE.MeshBasicMaterial({color: 0xffeb3b});
+  const sun = new THREE.Mesh(sunGeo, sunMat);
+  sun.position.set(3, 3.7, -4);
+  scene.add(sun);
+
+  // Animate: roof rotates, sun moves, trees sway
+  let t = 0;
   function animate() {
     requestAnimationFrame(animate);
-    roof.rotation.y += 0.004;
+    roof.rotation.y += 0.005;
+    t += 0.008;
+    sun.position.y = 3.7 + Math.sin(t)*0.18;
+    scene.children.forEach(obj => {
+      if (obj.geometry && obj.geometry.type === "SphereGeometry" && obj !== sun) {
+        obj.position.x += Math.sin(t*2 + obj.position.x)/280;
+      }
+    });
+    controls.update();
     renderer.render(scene, camera);
   }
   animate();
