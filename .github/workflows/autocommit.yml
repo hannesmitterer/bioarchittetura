@@ -1,0 +1,22 @@
+name: Autocommit All Changes
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *' # every hour
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Autocommit all changes
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add -A
+          git commit -m "Autocommit: added or updated files" || echo "No changes to commit"
+          git push
