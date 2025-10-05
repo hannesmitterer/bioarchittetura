@@ -6,19 +6,19 @@
   <title>Bioarchitettura® | Progettazione Sostenibile e Innovazione</title>
   <meta name="description" content="Bioarchitettura® promuove la progettazione sostenibile e l'innovazione nell'architettura. Scopri edizioni, progetti e risorse.">
   <meta name="keywords" content="bioarchitettura, architettura, sostenibilità, innovazione, edizioni, design, progetti">
-  <meta name="author" content="Bioarchitettura Team">
+  <meta name="author" content="Fondazione di Bioarchitettura">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://bioarchitettura.it/">
+  <link rel="canonical" href="https://www.bioarchitettura.org/">
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
   <meta property="og:title" content="Bioarchitettura® | Progettazione Sostenibile e Innovazione">
   <meta property="og:description" content="Bioarchitettura® promuove la progettazione sostenibile e l'innovazione nell'architettura. Scopri edizioni, progetti e risorse.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://bioarchitettura.it/">
-  <meta property="og:image" content="https://bioarchitettura.it/assets/og-image.jpg">
+  <meta property="og:url" content="https://www.bioarchitettura.org/">
+  <meta property="og:image" content="https://www.bioarchitettura.org/assets/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bioarchitettura® | Progettazione Sostenibile e Innovazione">
   <meta name="twitter:description" content="Bioarchitettura® promuove la progettazione sostenibile e l'innovazione nell'architettura.">
-  <meta name="twitter:image" content="https://bioarchitettura.it/assets/og-image.jpg">
+  <meta name="twitter:image" content="https://www.bioarchitettura.org/assets/og-image.jpg">
   <meta name="twitter:site" content="@bioarchitettura">
   <link rel="stylesheet" href="src/main.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -35,6 +35,77 @@
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#about">About</a></li>
       </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="home" class="section home-section">
+      <div class="home-content">
+        <h1>Benvenuti in Bioarchitettura®</h1>
+        <p>
+          Bioarchitettura® è il punto di riferimento per la progettazione sostenibile, la ricerca e l'innovazione nell'architettura.<br>
+          Esplora le nostre pubblicazioni, progetti, gallerie e risorse interattive.
+        </p>
+        <ul>
+          <li>Edizioni tematiche sulla bioarchitettura</li>
+          <li>Soluzioni innovative per ambienti salubri e sostenibili</li>
+          <li>Eventi, workshop e formazione</li>
+        </ul>
+        <div class="cta-row">
+          <a href="#gallery" class="cta-btn">Esplora la Gallery</a>
+          <a href="#about" class="cta-btn alt">Chi Siamo</a>
+        </div>
+      </div>
+      <div id="threejs-container" class="threejs-container" aria-label="3D Architectural Model"></div>
+    </section>
+    <section id="gallery" class="section gallery-section">
+      <h2>Gallery & Progetti</h2>
+      <p class="gallery-intro">
+        Scopri le nostre pubblicazioni e progetti innovativi realizzati dal team Bioarchitettura®.
+      </p>
+      <div class="gallery-grid" id="gallery" aria-label="Gallery of Edizioni"></div>
+    </section>
+    <section id="about" class="section about-section">
+      <h2>Chi Siamo</h2>
+      <div class="about-flex">
+        <div class="about-text">
+          <p>
+            Da oltre 30 anni la <strong>Fondazione di Bioarchitettura</strong> promuove la cultura del costruire sano e sostenibile.<br>
+            Il nostro team multidisciplinare collabora con esperti, università e aziende per diffondere approcci innovativi e responsabili.
+          </p>
+          <ul>
+            <li>Repository: <strong>bioarchittetura</strong></li>
+            <li>Owner: <strong>hannesmitterer</strong></li>
+            <li>Contatto: <a href="mailto:info@bioarchitettura.org">info@bioarchitettura.org</a></li>
+            <li>Sito ufficiale: <a href="https://www.bioarchitettura.org/">www.bioarchitettura.org</a></li>
+          </ul>
+        </div>
+        <div class="about-img">
+          <img src="assets/images/about-bioarchitettura.jpg" alt="Fondazione di Bioarchitettura Team" loading="lazy" />
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="section contact-section">
+      <h2>Contattaci</h2>
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="Nome" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" rows="4" placeholder="Messaggio" required></textarea>
+        <button type="submit">Invia</button>
+      </form>
+      <p class="contact-info">Oppure scrivi a <a href="mailto:info@bioarchitettura.org">info@bioarchitettura.org</a></p>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <span>&copy; 2025 Fondazione di Bioarchitettura</span>
+      <span> | Powered by GitHub & Three.js</span>
+      <span><a href="#contact" style="color: #00bcd4;">Contattaci</a></span>
+      <span><a href="https://www.bioarchitettura.org/" style="color: #00bcd4;">bioarchitettura.org</a></span>
+    </div>
+  </footer>
+  <script src="src/main.js"></script>
+</body>
+</html>      </ul>
     </nav>
   </header>
   <main>
