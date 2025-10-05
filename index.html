@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bioarchitettura®</title>
+  <link rel="stylesheet" href="src/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1 id="site-title"></h1>
+    <nav>
+      <button aria-label="Toggle navigation" id="menu-toggle">☰</button>
+      <ul id="nav-list"></ul>
+    </nav>
+  </header>
+  <main>
+    <section id="home">
+      <h2 id="home-heading"></h2>
+      <p id="home-content"></p>
+      <div id="threejs-container" style="width:100%;height:400px;background:#222"></div>
+    </section>
+    <section id="edizioni">
+      <h2 id="edizioni-heading"></h2>
+      <div class="gallery" id="gallery"></div>
+    </section>
+    <section id="about">
+      <h2 id="about-heading"></h2>
+      <p id="about-content"></p>
+    </section>
+  </main>
+  <footer>
+    <p id="footer-text"></p>
+  </footer>
+  <script src="src/main.js"></script>
+</body>
+</html>
