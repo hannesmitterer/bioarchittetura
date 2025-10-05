@@ -1,40 +1,15 @@
-// Responsive navigation for mobile
-const navToggle = document.querySelector('.nav-toggle');
-const navList = document.querySelector('.nav-list');
-navToggle.addEventListener('click', () => {
-  navList.classList.toggle('active');
-});
+:root {
+  --primary: #1a237e;
+  --accent: #00bcd4;
+  --bg: #f9f9f9;
+  --text: #222;
+  --header-bg: #fff;
+  --footer-bg: #1a237e;
+  --gallery-gap: 2.2rem;
+  --btn-radius: 28px;
+}
 
-// Gallery images with fallback, title, description
-const images = [
-  {
-    src: "assets/images/33n001.jpg",
-    fallback: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
-    title: "Casa Passiva",
-    description: "Progetto di casa a basso consumo energetico e massimo comfort."
-  },
-  {
-    src: "assets/images/33n002.jpg",
-    fallback: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    title: "Materiali Naturali",
-    description: "Approfondimento sui materiali sostenibili e riciclabili."
-  },
-  {
-    src: "assets/images/33n003.jpg",
-    fallback: "https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=400&q=80",
-    title: "Workshop Bioarchitettura",
-    description: "Formazione sulle tecniche di costruzione ecocompatibili."
-  },
-  {
-    src: "assets/images/33n004.jpg",
-    fallback: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=400&q=80",
-    title: "Verde Urbano",
-    description: "Soluzioni innovative per spazi pubblici naturali."
-  },
-  {
-    src: "assets/images/33n005.jpg",
-    fallback: "https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=400&q=80",
-    title: "Casa in Paglia",
+/* ... (rest of your CSS remains unchanged, copyright in footer is managed via HTML) ... */    title: "Casa in Paglia",
     description: "Edilizia sostenibile con materiali a basso impatto."
   }
 ];
